@@ -1,0 +1,72 @@
+<html>
+
+<head>    
+    
+<title>Alge</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src='http://code.jquery.com/jquery-2.0.3.min.js'></script>
+<script src="http://d3js.org/d3.v3.js"></script>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+<link rel="stylesheet" href="../static/css/layouts/pricing.css">
+<link rel="stylesheet" href="../static/css/layouts/graph.css">
+
+<script src='../static/app.js'></script>
+
+</head>
+
+<body>
+
+<div class="pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li class="pure-menu-selected"><a href="#">Login</a></li>
+    </ul>
+</div>
+
+<!--
+<div class="banner">
+    <h1 class="banner-head">
+        Simple Pricing.<br>
+        Try before you buy.
+    </h1>
+</div>
+-->
+
+<div class="l-content">
+    <div class="pricing-tables pure-g-r">
+    {% for price in prices %}
+        <div class="pure-u-1-3">
+            <div class="pricing-table pricing-table-{{ price.type }}">
+                <div class="pricing-table-header">
+                    <h2>{{ price.type }}</h2>
+
+                    <span class="pricing-table-price">
+                        {{ price.curPrice }} <span>per Oz</span>
+                    </span>
+                </div>
+
+                <ul class="pricing-table-list">
+                    <li>{{ price.win }}</li>
+                    <li>{{ price.lose }}</li>
+                </ul>
+
+                <button class="pure-button button-choose">Choose</button>
+            </div>
+        </div>
+    {% if loop.last %}
+    </div> 
+    {% else %}
+    {% if loop.index is divisibleby(3) %}
+    </div> 
+
+    <div class="pricing-tables pure-g-r">
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+</div> 
+
+</body>
+</html>
