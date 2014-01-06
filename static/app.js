@@ -24,6 +24,7 @@ $(function(){
 
 		var graphDiv = $('.l-content').append("<div class='graph'></div>");
 		//append svg d3 onto graph div
+		addLegend(type)
 		addChart('.graph',type);
 
 		var others = $('.pure-u-1-3');
@@ -47,6 +48,13 @@ $(function(){
 
 });
 
+function addLegend(type){
+	$(".graph").append("<div class='legend'></div>");
+
+	$(".legend").append("<div class ='box'></div> <span class='legendName'></span>");
+	$('.legendName').text(type);
+
+}
 
 function addChart(jElement,type){
 
@@ -78,16 +86,17 @@ function addChart(jElement,type){
 	    .y(function(d) { return y(d.temperature); });
 
 	var svg = d3.select(jElement).append("svg")
-	    .attr("width", width + margin.left + margin.right)
-	    .attr("height", height + margin.top + margin.bottom)
-	  	.append("g")
-	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+   		.attr("width", width + margin.left + margin.right)
+    	.attr("height", height + margin.top + margin.bottom)
+ 		.append("g")
+    	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
 
 	//hide
 	$("svg").hide();
 
 	//request based on type
-	d3.tsv("data.tsv", function(error, data) {
+	d3.tsv("data/oil", function(error, data) {
 	  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
 	  data.forEach(function(d) {

@@ -4,6 +4,7 @@
  */
 body {
     color: #526066;
+    background-color: white; 
 }
 
 h2, h3 {
@@ -88,30 +89,6 @@ p {
     border: 1px solid #ddd;
     margin: 0 0.5em;
     padding: 0 0 3em;
-}
-
-/*
- * -- PRICING TABLE HEADER COLORS --
- * Choose a different color based on the type of pricing table.
- */
-.pricing-table-gold .pricing-table-header {
-    background: #d6b400;
-}
-
-.pricing-table-oil .pricing-table-header {
-    background: #333;
-}
-.pricing-table-usdcad .pricing-table-header {
-    background: #1919ff;
-}
-.pricing-table-tsx .pricing-table-header {
-    background: #ae041b;
-}
-.pricing-table-nasdaq .pricing-table-header {
-    background: #298581;
-}
-.pricing-table-dow .pricing-table-header {
-    background: #519251;
 }
 
 /*
