@@ -5,6 +5,8 @@ from pymongo import MongoClient
 import json
 
 app = Flask(__name__)	
+app.config['SERVER_NAME'] = "jogit.io"
+
 
 client = MongoClient('localhost',27017)
 
@@ -90,4 +92,4 @@ def data(pricetype):
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=False,port=80)
