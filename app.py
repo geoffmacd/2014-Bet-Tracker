@@ -3,6 +3,7 @@ from bson import BSON,json_util
 from Price import Price
 from pymongo import MongoClient
 import json
+import setupdb
 
 app = Flask(__name__)	
 app.config['SERVER_NAME'] = "jogit.io"
@@ -92,4 +93,5 @@ def data(pricetype):
 
 
 if __name__ == '__main__':
+	setupdb.run()
     app.run(debug=False,port=80)

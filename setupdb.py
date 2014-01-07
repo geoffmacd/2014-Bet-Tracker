@@ -43,8 +43,11 @@ def initPrices():
 	indicescrape.writeDB(l)
 	print "done 4"
 
-if __name__ == '__main__':
-    clearBets()
+def run():
+	clearBets()
     clearPrices()
     initBets()
     initPrices()
+
+if __name__ == '__main__':
+    run()
