@@ -1,0 +1,25 @@
+from pymongo import MongoClient
+
+def clearPrices():
+	client = MongoClient('localhost',27017)
+	db = client.priceData
+	firstLine = l[0]
+	# start at first price not date
+	for i in range(len(firstLine)):
+		if i == 0:
+			continue 
+		#name of collection is in the first line of generated list
+		print "inserting to " + firstLine[i]
+		pricesC = db[firstLine[i]]
+		print pricesC
+		#only add unique dates
+		t = l[1:]
+		for row in t:
+			date = row[0]
+			print "trying date " + str(date)
+			prev = pricesC.find_one({"date":date})
+			print prev
+			if not prev:
+				# insert otherwise
+				pricesC.insert({"date":row[0],"price":row[i]})
+				print "inserted : " + str(row[i]) + " on " + str(row[0])

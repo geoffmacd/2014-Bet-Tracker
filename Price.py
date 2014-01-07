@@ -1,15 +1,15 @@
 class Price:
     """Object for each type of price"""
-    def winstr(self):
-        return self.winner + ' - ' + str(self.winBet)  
-    def losestr(self):
-        return self.loser + ' - ' + str(self.loseBet) 
-    def __init__(self, type,winner, loser,curPrice,winBet,loseBet):
+    def descstr(self,guy):
+        return guy['name'] + ' - ' + str(guy['bet'])  
+    def __init__(self, type,curPrice,p1,p2):
         self.type = type
-        self.winner = winner
-        self.loser = loser
-        self.winBet = winBet
-        self.loseBet = loseBet
-        self.win = self.winstr()
-        self.lose = self.losestr()
         self.curPrice = curPrice
+        print p1,p2
+        if(abs(curPrice - p1['bet']) < abs(curPrice - p2['bet'])):
+            self.win = self.descstr(p1)
+            self.lose = self.descstr(p2)
+        else:
+            self.win = self.descstr(p2)
+            self.lose = self.descstr(p1)
+

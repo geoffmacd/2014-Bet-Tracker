@@ -6,14 +6,7 @@ import json
 
 app = Flask(__name__)	
 
-global prices
-prices = []
-prices.append(Price("oil","geoff","alex",1200,1300,1150))
-prices.append(Price("gold","geoff","alex",1200,1300,1150))
-prices.append(Price("nasdaq","geoff","alex",1200,1300,1150))
-prices.append(Price("usdcad","geoff","alex",1200,1300,1150))
-prices.append(Price("tsx","geoff","alex",1200,1300,1150))
-prices.append(Price("dow","geoff","alex",1200,1300,1150))
+client = MongoClient('localhost',27017)
 
 def jd(obj):
     return json.dumps(obj, default=json_util.default)
@@ -36,18 +29,51 @@ def badResponse(code=400):
     response.headers['Content-Type'] = "application/json"
     return response
 
+  
+
+def getCurPrice(pricetype):
+	collectionName = pricetype
+	print "Requested current " + pricetype + " price"
+	db = client.priceData 
+	collections = db.collection_names()
+	if collectionName in collections:
+		collection = db[collectionName]
+		print collection
+		#find this pricetype by date ranging back to Dec12013
+		for doc in collection.find().sort("date",-1):
+			#return immediately with price
+			print doc
+			return doc['price']
+	else:
+		return None
+
 @app.route('/')
 def index():
-   print prices
-   return render_template('index.html',prices=prices)
+	dbG = client.bets.geoff
+	dbA = client.bets.alex
+	betsG = [doc for doc in dbG.find()]
+	print betsG
+	bets = []
+	for betG in betsG:
+		pricetype = betG["type"]
+		print pricetype
+		betA = dbA.find_one({"type":pricetype})
+		if betA:
+			dbPrice = client
+			curPrice = getCurPrice(pricetype)
+			print curPrice
+			p = Price(pricetype,curPrice,{"name":"Geoff","bet":betG["price"]},{"name":"Alex","bet":betA["price"]})
+			bets.append(p)
+		else:
+			continue
+	return render_template('index.html',prices=bets)
 
 @app.route('/data/<pricetype>')
 def data(pricetype):
 	#name will be same as collection
 	collectionName = pricetype
 	print "Requested " + pricetype + " data"
-	client = MongoClient('localhost',27017)
-	db = client.priceData
+	db = client.priceData 
 	collections = db.collection_names()
 	if collectionName in collections:
 		collection = db[collectionName]
@@ -64,4 +90,4 @@ def data(pricetype):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

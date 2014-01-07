@@ -20,7 +20,8 @@ def writeDB(l):
 		pricesC = db[firstLine[i]]
 		print pricesC
 		#only add unique dates
-		for row in l:
+		t = l[1:]
+		for row in t:
 			date = row[0]
 			print "trying date " + str(date)
 			prev = pricesC.find_one({"date":date})
