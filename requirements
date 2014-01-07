@@ -1,7 +1,7 @@
 Flask==0.8
 Jinja2==2.6
-pymongo
-BeautifulSoup
-Quandl
-requests==0.11.1
-bson
+pymongo==2.6.3
+beautifulsoup4==4.3.2
+Quandl==1.8.1
+requests==2.1.0
+pandas==0.12.0
