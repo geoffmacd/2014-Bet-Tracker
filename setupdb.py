@@ -45,9 +45,9 @@ def initPrices():
 
 def run():
 	clearBets()
-    clearPrices()
-    initBets()
-    initPrices()
+    	clearPrices()
+    	initBets()
+    	initPrices()
 
 if __name__ == '__main__':
-    run()
+    	run()
