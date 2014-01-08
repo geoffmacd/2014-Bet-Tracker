@@ -34,8 +34,8 @@ def writeDB(l):
 
 def getData():
 	#indices
-	l1 = pyq.get_yahoo_ticker_historical('20131202', time.strftime("%Y%m%d"),'^GSPTSE')
-	l2 = pyq.get_yahoo_ticker_historical('20131202', time.strftime("%Y%m%d"),'^DJI')
+	l1 = pyq.get_yahoo_ticker_historical('20131202', time.strftime("%Y%m%d"),'^DJI')
+	l2 = pyq.get_yahoo_ticker_historical('20131202', time.strftime("%Y%m%d"),'^GSPTSE')
 	l3 = pyq.get_yahoo_ticker_historical('20131202', time.strftime("%Y%m%d"),'^IXIC')
 	dates = map((lambda l: int(l[1])),l1)
 	r1 = map((lambda l: float(l[2])),l1)
