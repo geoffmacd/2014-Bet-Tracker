@@ -6,7 +6,7 @@ import json
 import setupdb
 
 app = Flask(__name__)	
-app.config['SERVER_NAME'] = "jogit.io"
+app.config['SERVER_NAME'] = "alexvsgeoff.com"
 
 
 client = MongoClient('localhost',27017)
