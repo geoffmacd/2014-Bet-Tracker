@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script src='http://code.jquery.com/jquery-2.0.3.min.js'></script>
+
 <script src="http://d3js.org/d3.v3.js"></script>
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 <link rel="stylesheet" href="../static/css/layouts/pricing.css">
@@ -21,8 +22,17 @@
 <div class="pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
 
     <ul>
-        <li><a href="#">Home</a></li>
-        <li class="pure-menu-selected"><a href="#">Login</a></li>
+        <li class="pure-menu-selected"><a href="#">Home</a></li>
+        <li class="login-list">
+            <form class="pure-form" autocomplete="on">
+                <fieldset>
+                    <input type="email" placeholder="Email">
+                    <input type="password" placeholder="Password">
+
+                    <button type="submitLogin" class="pure-button pure-button-primary" id="loginBut">Sign in</button>
+                </fieldset>
+            </form>
+        </li>
     </ul>
 </div>
 

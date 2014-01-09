@@ -46,7 +46,17 @@ def getCurPrice(pricetype):
 		for doc in collection.find().sort("date",-1):
 			#return immediately with price
 			print doc
-			return doc['price']
+			p = doc['price']
+			print p
+			if p < 1:
+				result = round(p,3)
+			elif p < 10:
+				result = round(p,2)
+			elif p < 100:
+				result = round(p,1)
+			else:
+				result = int(p)
+			return result
 	else:
 		return None
 

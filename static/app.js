@@ -56,6 +56,23 @@ function addLegend(type){
 
 }
 
+function formatData(data){
+
+	var result = data.data;
+
+	//precision
+	for (var i = data.length - 1; i >= 0; i--) {
+
+		if(data[i].price < 10)
+			data[i].price = data[i].price.toFixed(2)
+		else if (data[i].price < 1)
+		else 
+			data[i].price = data[i].price.toFixed(0)
+	};
+
+	return result;
+}
+
 function addChart(jElement,type){
 
 	var margin = {top: 20, right: 80, bottom: 30, left: 50},
