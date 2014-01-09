@@ -49,3 +49,5 @@ def run():
     	initBets()
     	initPrices()
 
+if __name__ == '__main__':
+    	run()
