@@ -1,4 +1,73 @@
+(function ($) {
+    $.fn.shake = function (options) {
+        // defaults
+        var settings = {
+            'shakes': 2,
+            'distance': 10,
+            'duration': 400
+        };
+        // merge options
+        if (options) {
+            $.extend(settings, options);
+        }
+        // make it so
+        var pos;
+        return this.each(function () {
+            $this = $(this);
+            // position if necessary
+            pos = $this.css('position');
+            if (!pos || pos === 'static') {
+                $this.css('position', 'relative');
+            }
+            // shake it
+            for (var x = 1; x <= settings.shakes; x++) {
+                $this.animate({ left: settings.distance * -1 }, (settings.duration / settings.shakes) / 4)
+                    .animate({ left: settings.distance }, (settings.duration / settings.shakes) / 2)
+                    .animate({ left: 0 }, (settings.duration / settings.shakes) / 4);
+            }
+        });
+    };
+}(jQuery));
+
 $(function(){
+
+	$('#loginBut').click(function(event){
+		event.preventDefault();
+
+		$(this).shake();
+
+			
+		//post to server
+		// $.ajax({
+		//    url: 'login',
+		//    statusCode: {
+		//      404: function(){
+		//      	//do not login
+		//      	//shake 
+		// 		$( "#loginBut" ).animate({
+		// 		    width: "toggle",
+		// 		    height: "toggle"
+		// 		  }, {
+		// 		    duration: 5000,
+		// 		    specialEasing: {
+		// 		      width: "linear",
+		// 		      height: "easeOutBounce"
+		// 		    },
+		// 		    complete: function() {
+		// 		      $( this ).after( "<div>Animation complete.</div>" );
+		// 		    }
+		// 		  });
+		//      },
+		//      200: function(){
+		//      	//login
+		//      },
+		//      500: function(){
+		//      	//error
+		//      	alert('server error')
+		//      }
+		//    }
+		// });
+	})
 
 	$('.pricing-table-header').click( function(){
 		//hide others
@@ -61,13 +130,16 @@ function formatData(data){
 	var result = data.data;
 
 	//precision
-	for (var i = data.length - 1; i >= 0; i--) {
+	for (var i = result.length - 1; i >= 0; i--) {
 
-		if(data[i].price < 10)
-			data[i].price = data[i].price.toFixed(2)
-		else if (data[i].price < 1)
+		if(result[i].price < 1)
+			result[i].price = result[i].price.toFixed(3)
+		else if (result[i].price < 10)
+			result[i].price = result[i].price.toFixed(2)
+		else if (result[i].price < 100)
+			result[i].price = result[i].price.toFixed(1)
 		else 
-			data[i].price = data[i].price.toFixed(0)
+			result[i].price = result[i].price.toFixed(0)
 	};
 
 	return result;
@@ -115,7 +187,7 @@ function addChart(jElement,type){
 	//request based on type
 	d3.json("data/"+type, function(error, data) {
 
-		data = data.data;
+	  data = formatData(data);
 
 	  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
