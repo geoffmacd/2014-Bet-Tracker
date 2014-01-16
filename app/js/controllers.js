@@ -20,7 +20,7 @@ bettyControllers.controller('PlayerCtrl',  ['$scope', '$routeParams', 'Bet', 'Pl
 //betting page with chart and modifications
 bettyControllers.controller('BetCtrl',  ['$scope', '$routeParams', 'Bet', 'Player', 'Quote'
 	function($scope,$routeParams, Bet, Player, Quote) {
-		$scope.bets = Bet.query();
+		$scope.bets = Bet.query({tickerId:$routeParams.tickerId});
   	}]);
 
 //quote page with search and chart

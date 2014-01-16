@@ -20,7 +20,7 @@ config(['$routeProvider',
         templateUrl: 'partials/portfolio.html',
         controller: 'PlayerCtrl'
       }).
-      when('/modify/:tickerId', {
+      when('/modify/:betId', {
         templateUrl: 'partials/bet.html',
         controller: 'BetCtrl'
       }).

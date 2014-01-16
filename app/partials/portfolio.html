@@ -1,1 +1,12 @@
-<p>This is the partial for view 1.</p>
+    <div class="span10">
+      <!--Body content-->
+
+      <ul class="phones">
+        <li ng-repeat="bet in bets | filter:player | orderBy:name" class="thumbnail phone-listing">
+          <a href="#/bets/{{bet.betId}}" class="thumb"><img ng-src="{{bet.stock.iconUrl}}"></a>
+          <a href="#/quotes/{{bet.stock.tickerId}}">{{bet.stock.tickerId}} : {{bet.stock.name}}</a>
+          <p>Your bet: {{bet.player.value}}</p>
+        </li>
+      </ul>
+
+    </div>
