@@ -4,10 +4,17 @@
     <meta charset="utf-8">
     <title>Alge</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="http://d3js.org/d3.v3.js"></script>
+
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
-    <link rel="stylesheet" href="../static/css/layouts/pricing.css">
-    <link rel="stylesheet" href="../static/css/layouts/graph.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/animations.css">
+
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <script src="lib/jquery/jquery-1.10.2.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-animate.js"></script>
+    <script src="lib/angular/angular-resource.js"></script>
+    <script src="lib/angular/angular-route.js"></script>
 </head>
 
 <body>
@@ -29,7 +36,10 @@
     </ul>
 </div>
 
-<div ng-view></div>
+  <div class="view-container">
+    <div ng-view class="view-frame"></div>
+  </div>
+
 <!--
 <div class="l-content">
     <div class="pricing-tables pure-g-r">

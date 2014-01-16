@@ -5,26 +5,26 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-var betService = angular.module('betty.services', [['ngResource']);
+var betService = angular.module('bettyServices', ['ngResource']);
 
 betService.factory('Bet', ['$resource',
   function($resource){
     return $resource('bet/:betId.json', {}, {
-      query: {method:'GET', params:{betId:'phones'}, isArray:true}
+      query: {method:'GET'}
     });
   }]);
 
 betService.factory('Quote', ['$resource',
   function($resource){
-    return $resource('quote/:ticker.json', {}, {
-      query: {method:'GET', params:{ticker:'phones'}, isArray:true}
+    return $resource('quote/:tickerId.json', {}, {
+      query: {method:'GET'}
     });
   }]);
 
-betService.factory('Quote', ['$resource',
+betService.factory('Player', ['$resource',
   function($resource){
-    return $resource('quote/:ticker.json', {}, {
-      query: {method:'GET', params:{ticker:'phones'}, isArray:true}
+    return $resource('player/:playerId.json', {}, {
+      query: {method:'GET'}
     });
   }]);
 

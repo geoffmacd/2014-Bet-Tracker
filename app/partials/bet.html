@@ -1,5 +1,58 @@
-<p>This is the partial for view 2.</p>
-<p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
-</p>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <!--History-->
+		<form ng-submit="getStock(query)">
+		      Search Stocks by Ticker: <input ng-model="query">
+		</form>
+
+		<ul>
+
+		</ul>
+
+    </div>
+    <div class="span10">
+    
+      <!--Body content-->
+
+      <div class="phones">
+		<ul class="specs">
+		  <li>
+		    <span>Market Value</span>
+		    <dl>
+		      <dt>Market Cap</dt>
+		      <dd>{{stock.marketcap}}</dd>
+		      <dt>Latest Price</dt>
+		      <dd>{{stock.price}}</dd>
+		      <dt>P/E</dt>
+		      <dd>{{stock.pe}}</dd>
+		    </dl>
+		  </li>
+		  <li>
+		    <span>Trading Stats</span>
+		    <dl>
+		      <dt>52 Week High</dt>
+		      <dd>{{stock.high}}</dd>
+		      <dt>52 Week Low</dt>
+		      <dd>{{stock.low}}</dd>
+		    </dl>
+		  </li>
+		  <li>
+		    <span>Name and Market</span>
+		    <dl>
+		      <dt>Name</dt>
+		      <dd>{{stock.name}}</dd>
+		      <dt>Exchange</dt>
+		      <dd>{{stock.exchange}}</dd>
+		    </dl>
+		  </li>
+		  </ul>
+      </div>
+
+      <div class="graph">
+      	<p>Sample Graph here</p>
+      </div>
+
+    </div>
+  </div>
+</div>

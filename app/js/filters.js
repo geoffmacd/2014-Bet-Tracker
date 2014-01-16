@@ -2,7 +2,7 @@
 
 /* Filters */
 
-angular.module('betty.filters', []).
+angular.module('bettyfilters', []).
   filter('interpolate', ['version', function(version) {
     return function(text) {
       return String(text).replace(/\%VERSION\%/mg, version);

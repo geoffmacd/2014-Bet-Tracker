@@ -4,10 +4,10 @@
 // Declare app level module which depends on filters, and services
 angular.module('betty', [
   'ngRoute',
-  'betty.filters',
-  'betty.services',
-  'betty.directives',
-  'betty.controllers'
+  'bettyFilters',
+  'bettyServices',
+  'bettyControllers'
+  'bettyAnimations'
 ]).
 config(['$routeProvider',
   function($routeProvider) {
@@ -16,13 +16,17 @@ config(['$routeProvider',
         templateUrl: 'partials/overview.html',
         controller: 'OverviewCtrl'
       }).
-      when('/portfolio', {
-        templateUrl: 'partials/player.html',
+      when('/portfolio/:playerId', {
+        templateUrl: 'partials/portfolio.html',
         controller: 'PlayerCtrl'
       }).
       when('/modify/:tickerId', {
         templateUrl: 'partials/bet.html',
         controller: 'BetCtrl'
+      }).
+      when('/quote/:tickerId', {
+        templateUrl: 'partials/quote.html',
+        controller: 'QuoteCtrl'
       }).
       when('/quote', {
         templateUrl: 'partials/quote.html',
