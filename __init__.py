@@ -5,7 +5,7 @@ from pymongo import MongoClient
 import json
 import setupdb
 
-app = Flask(__name__)	
+app = Flask(__name__)
 app.config['SERVER_NAME'] = "alexvsgeoff.com"
 
 
@@ -32,12 +32,12 @@ def badResponse(code=400):
     response.headers['Content-Type'] = "application/json"
     return response
 
-  
+
 
 def getCurPrice(pricetype):
 	collectionName = pricetype
 	print "Requested current " + pricetype + " price"
-	db = client.priceData 
+	db = client.priceData
 	collections = db.collection_names()
 	if collectionName in collections:
 		collection = db[collectionName]
@@ -60,6 +60,7 @@ def getCurPrice(pricetype):
 	else:
 		return None
 
+@app.route('/<path:path>')
 @app.route('/')
 def index():
 	dbG = client.bets.geoff
@@ -86,7 +87,7 @@ def data(pricetype):
 	#name will be same as collection
 	collectionName = pricetype
 	print "Requested " + pricetype + " data"
-	db = client.priceData 
+	db = client.priceData
 	collections = db.collection_names()
 	if collectionName in collections:
 		collection = db[collectionName]
