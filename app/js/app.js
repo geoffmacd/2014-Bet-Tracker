@@ -6,7 +6,7 @@ angular.module('betty', [
   'ngRoute',
   'bettyFilters',
   'bettyServices',
-  'bettyControllers'
+  'bettyControllers',
   'bettyAnimations'
 ]).
 config(['$routeProvider',
@@ -20,7 +20,7 @@ config(['$routeProvider',
         templateUrl: 'partials/portfolio.html',
         controller: 'PlayerCtrl'
       }).
-      when('/modify/:betId', {
+      when('/bet/:betId', {
         templateUrl: 'partials/bet.html',
         controller: 'BetCtrl'
       }).

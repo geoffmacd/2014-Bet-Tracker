@@ -1,32 +1,18 @@
-<div class="l-content">
-    <div class="pricing-tables pure-g-r">
-    {% for price in prices %}
-        <div class="pure-u-1-3">
-            <div class="pricing-table pricing-table-{{ price.type }}">
-                <div class="pricing-table-header">
-                    <h2>{{ price.type }}</h2>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span10">
+      <!--Body content-->
 
-                    <span class="pricing-table-price">
-                        {{ price.curPrice }} <span>per Oz</span>
-                    </span>
-                </div>
+      <ul class="phones">
+        <li ng-repeat="bet in bets"
+            class="thumbnail phone-listing">
+            
+          {{bet.ticker}}
 
-                <ul class="pricing-table-list">
-                    <li>{{ price.win }} - <i>Winning</i></li>
-                    <li>{{ price.lose }}</li>
-                </ul>
+          <p>{{bet.price}}</p>
+        </li>
+      </ul>
 
-                <button class="pure-button button-choose">Choose</button>
-            </div>
-        </div>
-    {% if loop.last %}
-    </div> 
-    {% else %}
-    {% if loop.index is divisibleby(3) %}
-    </div> 
-
-    <div class="pricing-tables pure-g-r">
-    {% endif %}
-    {% endif %}
-    {% endfor %}
-</div> 
+    </div>
+  </div>
+</div>

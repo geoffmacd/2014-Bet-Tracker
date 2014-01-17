@@ -1,0 +1,16 @@
+{
+	"ticker" : "AAPL",
+	"price" : 550.0,
+	"marketcap" : 500000000000,
+	"52low" :	380,
+	"52high" : 700,
+	"name" : "Apple",
+	"pe":	13.3,
+	"eps": 52,
+	"exchange" : "nyse",
+	"history" : [
+			{"date": 20140108, "price": 520}, 
+			{"date": 20140107, "price": 530}, 
+			{"date": 20140106, "price": 535}
+		]
+}

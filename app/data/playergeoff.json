@@ -1,0 +1,10 @@
+{
+	"name" : "geoff",
+	"joined" : "2014-01-12",
+	"password"	: "test",
+	"bets" : [
+			{ "aapl" : 570 },
+			{ "msft" : 31 },
+			{ "goog" : 700 }
+		]
+}

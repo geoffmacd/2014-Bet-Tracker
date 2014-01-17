@@ -1,0 +1,16 @@
+{
+	"ticker" : "GOOG",
+	"price" : 1100,
+	"marketcap" : 350000000000,
+	"52low" :	800,
+	"52high" : 1200,
+	"name" : "Google",
+	"pe":	30,
+	"eps": 17,
+	"exchange" : "nasdaq",
+	"history" : [
+			{"date": 20140108, "price": 1000}, 
+			{"date": 20140107, "price": 1100}, 
+			{"date": 20140106, "price": 1200}
+		]
+}
