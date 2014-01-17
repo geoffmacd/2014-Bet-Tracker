@@ -1,29 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-  <style type="text/css">
-  div {
-    width: 33%
-  }
+<div class="l-content">
+	<div class="top">
+		<div>
+			<!--Search query content-->
 
-  </style>
-</head>
-<body>
-<div> 
+			Search: <input ng-model="query">
+		</div>
 
-Geoff
+		<div>
+		<div>
+			<!--Found stock panel-->
+			    <div class="bet-table-header">
+                    <h2>{{ bet.ticker }}</h2>
+
+                    <span class="bet-table-price">
+                        {{ bet.price }}
+                    </span>
+                </div>
+		</div>
+
+	</div>
+
+	<div class="chartDiv">
+		<!--d3.js chart-->
+  		<script src="http://d3js.org/d3.v3.js"></script>
+		<svg>
+		</svg>
+	</div>
+
+
 </div>
-
-<div>
-
-Steve
-</div>
-
-<div>
-
-Alex
-</div>
-
-</body>
-</html>

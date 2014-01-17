@@ -6,8 +6,7 @@ angular.module('betty', [
   'ngRoute',
   'bettyFilters',
   'bettyServices',
-  'bettyControllers',
-  'bettyAnimations'
+  'bettyControllers'
 ]).
 config(['$routeProvider',
   function($routeProvider) {

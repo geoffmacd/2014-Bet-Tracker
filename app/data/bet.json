@@ -1,32 +1,155 @@
 [
 	{	
 		"ticker" : "aapl",
-		"rule" : "closest",
+		"rule" : "closest guess",
 		"price" : 550,
 		"bets" : [
-			{"geoff" : 580},
-			{"alex" : 550},
-			{"steve" : 500}
+			{"name" : "geoff", 
+			"price" : 600},
+			{"name" : "alex", 
+			"price" : 500},
+			{"name" : "steve", 
+			"price" : 550}
 			]
 	},
 	{	
 		"ticker" : "goog",
-		"rule" : "closest",
+		"rule" : "closest guess",
 		"price" : 1100,
 		"bets" : [
-			{"geoff" : 800},
-			{"alex" : 1100},
-			{"steve" : 1200}
+			{"name" : "geoff", 
+			"price" : 800},
+			{"name" : "alex", 
+			"price" : 1100},
+			{"name" : "steve", 
+			"price" : 1200}
 			]
 	},
 	{	
 		"ticker" : "msft",
-		"rule" : "closest",
+		"rule" : "closest guess",
 		"price" : 37,
 		"bets" :  [
-			{"geoff" : 23},
-			{"alex" : 33},
-			{"steve" : 35}
+			{"name" : "geoff", 
+			"price" : 23},
+			{"name" : "alex", 
+			"price" : 33},
+			{"name" : "steve", 
+			"price" : 35}
+			]
+	},{	
+		"ticker" : "aapl",
+		"rule" : "closest guess",
+		"price" : 550,
+		"bets" : [
+			{"name" : "geoff", 
+			"price" : 600},
+			{"name" : "alex", 
+			"price" : 500},
+			{"name" : "steve", 
+			"price" : 550}
+			]
+	},
+	{	
+		"ticker" : "goog",
+		"rule" : "closest guess",
+		"price" : 1100,
+		"bets" : [
+			{"name" : "geoff", 
+			"price" : 800},
+			{"name" : "alex", 
+			"price" : 1100},
+			{"name" : "steve", 
+			"price" : 1200}
+			]
+	},
+	{	
+		"ticker" : "msft",
+		"rule" : "closest guess",
+		"price" : 37,
+		"bets" :  [
+			{"name" : "geoff", 
+			"price" : 23},
+			{"name" : "alex", 
+			"price" : 33},
+			{"name" : "steve", 
+			"price" : 35}
+			]
+	},{	
+		"ticker" : "aapl",
+		"rule" : "closest guess",
+		"price" : 550,
+		"bets" : [
+			{"name" : "geoff", 
+			"price" : 600},
+			{"name" : "alex", 
+			"price" : 500},
+			{"name" : "steve", 
+			"price" : 550}
+			]
+	},
+	{	
+		"ticker" : "goog",
+		"rule" : "closest guess",
+		"price" : 1100,
+		"bets" : [
+			{"name" : "geoff", 
+			"price" : 800},
+			{"name" : "alex", 
+			"price" : 1100},
+			{"name" : "steve", 
+			"price" : 1200}
+			]
+	},
+	{	
+		"ticker" : "msft",
+		"rule" : "closest guess",
+		"price" : 37,
+		"bets" :  [
+			{"name" : "geoff", 
+			"price" : 23},
+			{"name" : "alex", 
+			"price" : 33},
+			{"name" : "steve", 
+			"price" : 35}
+			]
+	},{	
+		"ticker" : "aapl",
+		"rule" : "closest guess",
+		"price" : 550,
+		"bets" : [
+			{"name" : "geoff", 
+			"price" : 600},
+			{"name" : "alex", 
+			"price" : 500},
+			{"name" : "steve", 
+			"price" : 550}
+			]
+	},
+	{	
+		"ticker" : "goog",
+		"rule" : "closest guess",
+		"price" : 1100,
+		"bets" : [
+			{"name" : "geoff", 
+			"price" : 800},
+			{"name" : "alex", 
+			"price" : 1100},
+			{"name" : "steve", 
+			"price" : 1200}
+			]
+	},
+	{	
+		"ticker" : "msft",
+		"rule" : "closest guess",
+		"price" : 37,
+		"bets" :  [
+			{"name" : "geoff", 
+			"price" : 23},
+			{"name" : "alex", 
+			"price" : 33},
+			{"name" : "steve", 
+			"price" : 35}
 			]
 	}
 ]
