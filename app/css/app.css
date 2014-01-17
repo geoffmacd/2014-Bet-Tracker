@@ -22,6 +22,7 @@ p {
 .login-form{
 	float: right;
 	display: inline-block;
+	padding-right: 15px;
 }
 
 .l-content {
@@ -200,6 +201,65 @@ p {
 .view-container{
     padding-top: 5em;
 }
+
+
+/*
+Quote View
+*/
+
+
+.top{
+	height: 200px;
+	padding: 0 20% 0 20%;
+}
+
+.top div {
+	display: inline-block;
+}
+
+.stockInfo{
+	width: 30%;
+	float: right;
+}
+
+.queryDiv{
+	vertical-align: middle;
+	padding: 2em;
+}
+
+#searchField {
+	width: 120px;
+}
+
+/*
+Portfolio View
+*/
+
+.basicInfo{
+	padding-left: 5%;
+	display: inline-block;
+}
+
+.betListDiv {
+	float:right;
+	width: 50%;
+	border:2px;
+	display: inline-block;
+}
+
+.betList span{
+
+	font-size: larger;
+}
+.betList li{
+
+	line-height: 3em;
+}
+
+dd {
+	font-weight: bold;
+}
+
 
 /*
  * -- TABLET MEDIA QUERIES --

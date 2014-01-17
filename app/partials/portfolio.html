@@ -1,12 +1,21 @@
-    <div>
+<div class="basicInfo">
+  <h3>Basic Info</h2>
 
-    {{ player.name}}          {{ player.joined}}
-      <ul class="phones">
-        <li ng-repeat="bet in player.bets">
-          <a href="#/bets/{{bet.betId}}" class="thumb"><img ng-src="{{bet.stock.iconUrl}}"></a>
-          <a href="#/quotes/{{bet.stock.tickerId}}">{{bet.stock.tickerId}} : {{bet.stock.name}}</a>
-          <p>Your bet: {{bet.player.value}}</p>
-        </li>
-      </ul>
+  <dt>Name: </dt>
+  <dd>{{ player.name}}</dd>
+  <br>
+  <dt>Joined: </dt>
+  <dd>{{ player.joined}}</dd>
+</div>
 
-    </div>
+<div class="betListDiv">
+            
+  <h3>Your Bets</h2>
+  <ul class="betList">
+    <li ng-repeat="bet in player.bets">
+      <a href="#/quote/{{bet.betTicker}}"><span>{{bet.betTicker}}</span></a> : 
+      Your bet: {{bet.bet}}
+    </li>
+  </ul>
+
+</div>

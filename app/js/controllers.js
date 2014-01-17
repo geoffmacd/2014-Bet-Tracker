@@ -38,6 +38,8 @@ bettyControllers.controller('QuoteCtrl', ['$scope', '$routeParams', 'Quote',
 		if($routeParams.tickerId){
 			//get stock data immediately
 			$scope.quote = Quote.get({tickerId:$routeParams.tickerId});
+			//put ticker inside search field
+			$scope.query = $routeParams.tickerId;
 		}
 
 		//called on input submission

@@ -1,19 +1,19 @@
 <div class="l-content">
 	<div class="top">
-		<div>
+		<div class="queryDiv">
 			<!--Search query content-->
+			<p>Search from NYSE, NASDAQ, TSX by ticker only</p>
 
-			Search: <input ng-model="query">
+			Search: <input ng-model="query" ng-change="getStock(query)" id="searchField">
 		</div>
 
-		<div>
-		<div>
+		<div class="stockInfo">
 			<!--Found stock panel-->
 			    <div class="bet-table-header">
-                    <h2>{{ bet.ticker }}</h2>
+                    <h2>{{ quote.ticker }}</h2>
 
                     <span class="bet-table-price">
-                        {{ bet.price }}
+                        {{ quote.price }}
                     </span>
                 </div>
 		</div>
@@ -22,9 +22,7 @@
 
 	<div class="chartDiv">
 		<!--d3.js chart-->
-  		<script src="http://d3js.org/d3.v3.js"></script>
-		<svg>
-		</svg>
+  		<script src="lib/d3/d3.v3.js"></script>
 	</div>
 
 

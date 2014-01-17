@@ -5,7 +5,7 @@
     <title>2014 Stock Bets</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="lib/pure/pure.css">
     <link rel="stylesheet" href="css/app.css">
 
     <script src="lib/jquery/jquery-1.10.2.js"></script>
@@ -23,24 +23,23 @@
 <body>
 
 <header>
-<div class="pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+    <div class="pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+        <ul>
+            <li class="pure-menu"><a href="#">Home</a></li>
+            <li class="pure-menu"><a href="#/portfolio/geoff">Portfolio</a></li>
+            <li class="pure-menu"><a href="#/quote">Quote</a></li>
+        </ul>
+        <div class="login-form">
+            <form class="pure-form" autocomplete="on">
+                <fieldset>
+                    <input type="email" placeholder="Email">
+                    <input type="password" placeholder="Password">
 
-    <ul>
-        <li class="pure-menu-selected"><a href="#">Home</a></li>
-        <li class="pure-menu"><a href="#/portfolio/geoff">Portfolio</a></li>
-        <li class="pure-menu"><a href="#/quote">Quote</a></li>
-    </ul>
-    <div class="login-form">
-        <form class="pure-form" autocomplete="on">
-            <fieldset>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-
-                <button type="submitLogin" class="pure-button pure-button-primary" id="loginBut">Sign in</button>
-            </fieldset>
-        </form>
+                    <button type="submitLogin" class="pure-button pure-button-primary" id="loginBut">Sign in</button>
+                </fieldset>
+            </form>
+        </div>
     </div>
-</div>
 </header>
 
 <div class="view-container">
