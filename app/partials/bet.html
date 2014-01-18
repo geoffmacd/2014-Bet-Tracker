@@ -1,18 +1,22 @@
 <div class="l-content">
 
+  <div class="title">  
+    <h3>Bet: {{ bet.ticker }}</h3>
+  </div>
+
 	<div class="back-button">
-	<a href="#/home">&#8592	 Back</a>
+		<a href="#/home">&#8592	 Back</a>
 	</div>
 
 	<div class="stockdetails pure-g-r">
         <div class="pure-u-1-2">
             <a href="#/home">
 	            <div class="l-box">
-	                <div class="bet-table-header">
+	                <div class="bet-table-header bet-ticker-header">
 	                    <h2>{{ bet.ticker }}</h2>
 
 	                    <span class="bet-table-price">
-	                        {{ bet.price }} <span> {{ bet.rule }}</span>
+	                        {{ bet.price }} <span> Rule : {{ bet.rule }}</span>
 	                    </span>
 	                </div>
 	            </div>

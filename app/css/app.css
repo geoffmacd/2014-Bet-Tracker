@@ -30,7 +30,7 @@ p {
 }
 
 .l-box {
-    padding: 0.5em 2em;
+    padding: 0.5em 1.5em;
 }
 
 /*
@@ -101,7 +101,6 @@ p {
     background: #519251;
     color: #fff;
     text-align: center;
-    max-width: 310px;
 }
     .bet-table-header h2 {
         margin: 0;
@@ -189,7 +188,7 @@ p {
     }
 
 .view-container{
-    padding-top: 4em;
+    padding-top: 3em;
 }
 
 
@@ -234,14 +233,20 @@ Bet View
     padding-left: 2em;
 }
 
+.bet-ticker-header{
+
+    max-width: 310px;
+}
 
 .trades-table{
     width: 100%;
 }
 
 .back-button{
+    font-size: larger;
     padding-left: 1em;
     position: absolute;
+    margin-top: 4em;
 }
 
 /*
@@ -289,8 +294,8 @@ Portfolio View
 }
 
 .betListDiv {
-    padding-right: 1em;
-	float:right;
+    padding-left: 1em;
+	float:left;
 	width: 60%;
 	border:2px;
 	display: inline-block;
@@ -309,6 +314,10 @@ dd {
 	color: #0431B4;
 }
 
+
+.title {
+    padding-left: 5%;
+}
 
 /*
  * -- TABLET MEDIA QUERIES --
