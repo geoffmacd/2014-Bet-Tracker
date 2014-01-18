@@ -29,7 +29,40 @@ bettyControllers.controller('BetCtrl',  ['$scope', '$routeParams', 'Bet', 'Quote
 		//get quote for chart
 		$scope.quote = Quote.get({tickerId:$routeParams.tickerId});
 
-		$scope.myData = [10,20,30,40,60];
+		$scope.myData = [];
+	    $scope.$watch('quote.price', function() {
+
+		   if($scope.quote.price > 0){
+		   		//alert('found');
+				$scope.myData = sinAndCos;
+		   } else {
+		   		console.log('none');
+				$scope.myData = [];
+		   }
+		});
+
+		function sinAndCos() {
+              var sin = [],
+                  cos = [];
+           
+              for (var i = 0; i < 100; i++) {
+                sin.push({x: i, y: Math.sin(i/10)});
+                cos.push({x: i, y: .5 * Math.cos(i/10)});
+              }
+           
+              return [
+	              {
+	                 values: sin,
+	                 key: 'Sine Wave',
+	                 color: '#ff7f0e'
+	              },
+	              {
+	                 values: cos,
+	                 key: 'Cosine Wave',
+	                color: '#2ca02c'
+	              }
+              ];
+         }
   	}]);
 
 //quote page with search and chart
@@ -49,4 +82,39 @@ bettyControllers.controller('QuoteCtrl', ['$scope', '$routeParams', 'Quote',
 			//ticker Id should always be equal to $scope.query
 	      	$scope.quote = Quote.get({tickerId:tickerId});
 	    }
+
+		$scope.myData = [];
+	    $scope.$watch('quote.price', function() {
+
+		   if($scope.quote.price){
+				$scope.myData = sinAndCos;
+		   } else {
+		   		console.log('none');
+				$scope.myData = null;
+		   }
+		});
+
+		function sinAndCos() {
+              var sin = [],
+                  cos = [];
+           
+              for (var i = 0; i < 100; i++) {
+                sin.push({x: i, y: Math.sin(i/10)});
+                cos.push({x: i, y: .5 * Math.cos(i/10)});
+              }
+           
+              return [
+	              {
+	                 values: sin,
+	                 key: 'Sine Wave',
+	                 color: '#ff7f0e'
+	              },
+	              {
+	                 values: cos,
+	                 key: 'Cosine Wave',
+	                color: '#2ca02c'
+	              }
+              ];
+         }
+
   	}]);

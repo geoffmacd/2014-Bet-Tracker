@@ -1,45 +1,58 @@
 <div class="l-content">
 
-	<div class="pure-menu pure-menu-open pure-menu-horizontal betstatsdiv">
-		<ul class="quotestats">
-		  <li>
-		    <h2>{{quote.ticker}}</h2>
-		    <h5>{{bet.rule}}</h5>
-		    <h5>{{bet.bets.length}} participants</h5>
-		  </li>
-		  <li>
-		    <span>Name and Market</span>
-		    <dl>
-		      <dt>Name</dt>
-		      <dd>{{quote.name}}</dd>
-		      <dt>Exchange</dt>
-		      <dd>{{quote.exchange}}</dd>
-		    </dl>
-		  </li>
-		  <li>
-		    <span>Market Value</span>
-		    <dl>
-		      <dt>Market Cap</dt>
-		      <dd>{{quote.marketcap}}</dd>
-		      <dt>Latest Price</dt>
-		      <dd>{{quote.price}}</dd>
-		      <dt>P/E</dt>
-		      <dd>{{quote.pe}}</dd>
-		    </dl>
-		  </li>
-		  <li>
-		    <span>Trading Stats</span>
-		    <dl>
-		      <dt>52 Week High</dt>
-		      <dd>{{quote.52high}}</dd>
-		      <dt>52 Week Low</dt>
-		      <dd>{{quote.52low}}</dd>
-		      <dt>Volume</dt>
-		      <dd>Above Average</dd>
-		    </dl>
-		  </li>
-	  </ul>
-	</div>
+	<div class="stockdetails pure-g-r">
+
+        <div class="pure-u-1-4">
+            <div class="l-box">
+                <div class="bet-table-header">
+                    <h2>{{ bet.ticker }}</h2>
+
+                    <span class="bet-table-price">
+                        {{ bet.price }} <span> {{ bet.rule }}</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="pure-u-1-4">
+            <div class="l-box">
+                <h3 class="information-head">Stock</h3>
+			    <dl>
+				      <dt>Name</dt>
+				      <dd>{{quote.name}}</dd>
+				      <dt>Exchange</dt>
+				      <dd>{{quote.exchange}}</dd>
+			    </dl>
+            </div>
+        </div>
+        <div class="pure-u-1-4">
+            <div class="l-box">
+                <h3 class="information-head">Value</h3>
+			    <dl>
+			      <dt>Market Cap</dt>
+			      <dd>{{quote.marketcap}}</dd>
+			      <dt>Latest Price</dt>
+			      <dd>{{quote.price}}</dd>
+			      <dt>P/E</dt>
+			      <dd>{{quote.pe}}</dd>
+			    </dl>
+            </div>
+        </div>
+
+        <div class="pure-u-1-4">
+            <div class="l-box">
+                <h3 class="information-head">Stats</h3>
+			    <dl>
+			      <dt>52 Week High</dt>
+			      <dd>{{quote.52high}}</dd>
+			      <dt>52 Week Low</dt>
+			      <dd>{{quote.52low}}</dd>
+			      <dt>Volume</dt>
+			      <dd>Above Average</dd>
+			    </dl>
+            </div>
+        </div>	
+    </div> 
+
 
 	<div class="chartDiv">
 		<h3>2014 Chart</h3>

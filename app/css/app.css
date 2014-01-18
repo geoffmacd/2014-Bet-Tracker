@@ -112,6 +112,7 @@ p {
 .bet-table-header {
     background: #111;
     color: #fff;
+    text-align: center;
 }
     .bet-table-header h2 {
         margin: 0;
@@ -127,7 +128,7 @@ p {
  * Styles for the price and the corresponding <span>per month</span>
  */
 .bet-table-price {
-    font-size: 6em;
+    font-size: 4em;
     margin: 0.2em 0 0;
     font-weight: 100;
 }
@@ -238,10 +239,16 @@ Bet View
 }
 
 .chartDiv{
-    padding: 1em 1em 0 1em;
+    padding: 1em 1em 0 0;
+}
+.chartDiv h3{
+    padding-left: 2em;
 }
 
-
+.stockdetails{
+    max-width: 980px;
+    margin: 0 auto;
+}
 /*
 Quote View
 */
@@ -262,12 +269,15 @@ Quote View
 }
 
 .queryDiv{
-	vertical-align: middle;
-	padding: 2em;
+	padding: 0 0 1em 2em;
 }
 
 #searchField {
 	width: 120px;
+}
+
+.searchResultDescription{
+    color: red;
 }
 
 /*
