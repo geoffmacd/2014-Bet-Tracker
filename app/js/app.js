@@ -11,8 +11,8 @@ angular.module('betty', [
 config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/overview', {
-        templateUrl: 'partials/overview.html',
+      when('/home', {
+        templateUrl: 'partials/home.html',
         controller: 'OverviewCtrl'
       }).
       when('/portfolio/:playerId', {
@@ -32,11 +32,11 @@ config(['$routeProvider',
         controller: 'QuoteCtrl'
       }).
       otherwise({
-        redirectTo: '/overview'
+        redirectTo: '/home'
       });
   }
 ]).
-directive('barsChart', function ($parse) {
+directive('stockChart', function ($parse) {
      //explicitly creating a directive definition variable
      //this may look verbose but is good for clarification purposes
      //in real life you'd want to simply return the object {...}
@@ -53,74 +53,74 @@ directive('barsChart', function ($parse) {
          //passed thru chart-data attribute
          scope: {data: '=chartData'},
          link: function (scope, element, attrs) {
-           //in D3, any selection[0] contains the group
-           //selection[0][0] is the DOM node
-           //but we won't need that this time
-           // var chart = d3.select(element[0]);
-           // //to our original directive markup bars-chart
-           // //we add a div with out chart stling and bind each
-           // //data entry to the chart
-           //  chart.append("div").attr("class", "chart")
-           //   .selectAll('div')
-           //   .data(scope.data).enter().append("div")
-           //   .transition().ease("elastic")
-           //   .style("width", function(d) { return d + "%"; })
-           //   .text(function(d) { return d + "%"; });
-           // //a little of magic: setting it's width based
-           // //on the data value (d) 
-           // //and text all with a smooth transition
 
-           console.log(scope.data);
+            console.log(scope.data);
 
+            nv.addGraph(function() {  
+              var chart = nv.models.lineChart();
 
-        nv.addGraph(function() {  
-          var chart = nv.models.lineChart();
+              chart.xAxis
+              .axisLabel('Time (ms)')
+              .tickFormat(d3.format(',r'));
 
-          chart.xAxis
-          .axisLabel('Time (ms)')
-          .tickFormat(d3.format(',r'));
+              chart.yAxis
+              .axisLabel('Voltage (v)')
+              .tickFormat(d3.format('.02f'));
 
-          chart.yAxis
-          .axisLabel('Voltage (v)')
-          .tickFormat(d3.format('.02f'));
+              d3.select('#chart svg')
+              .datum(sinAndCos)
+              .transition().duration(500)
+              .call(chart);
 
-          d3.select('#chart svg')
-          .datum(sinAndCos)
-          .transition().duration(500)
-          .call(chart);
+              nv.utils.windowResize(function() { d3.select('#chart svg').call(chart) });
 
-          nv.utils.windowResize(function() { d3.select('#chart svg').call(chart) });
-
-          return chart;
-        });
+              return chart;
+            });
 
 
             function sinAndCos() {
-        var sin = [],
-            cos = [];
-     
-        for (var i = 0; i < 100; i++) {
-          sin.push({x: i, y: Math.sin(i/10)});
-          cos.push({x: i, y: .5 * Math.cos(i/10)});
-        }
-     
-       return [
-        {
-           values: sin,
-           key: 'Sine Wave',
-           color: '#ff7f0e'
-        },
-        {
-           values: cos,
-           key: 'Cosine Wave',
-          color: '#2ca02c'
-        }
-        ];
-    }
-
-
-
+              var sin = [],
+                  cos = [];
+           
+              for (var i = 0; i < 100; i++) {
+                sin.push({x: i, y: Math.sin(i/10)});
+                cos.push({x: i, y: .5 * Math.cos(i/10)});
+              }
+           
+              return [
+                {
+                   values: sin,
+                   key: 'Sine Wave',
+                   color: '#ff7f0e'
+                },
+                {
+                   values: cos,
+                   key: 'Cosine Wave',
+                  color: '#2ca02c'
+                }
+              ];
+            }
          } 
       };
       return directiveDefinitionObject;
-});
+}).
+directive('activeLink', ['$location', function(location) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs, controller) {
+            var clazz = attrs.activeLink;
+            var path = attrs.href;
+            path = path.substring(1); //hack because path does bot return including hashbang
+            scope.location = location;
+            console.log(path);
+            scope.$watch('location.path()', function(newPath) {
+                if (path === newPath) {
+                    element.parent().addClass(clazz);
+                } else {
+                    element.parent().removeClass(clazz);
+                }
+            });
+        }
+
+    };
+}]);
