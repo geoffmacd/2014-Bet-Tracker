@@ -4,20 +4,18 @@
 	"price" : 1100,
 	"bets" : [
 		{"name" : "geoff", 
-		"price" : 800},
+		"price" : 800,
+		"history" : [
+		]},
 		{"name" : "alex", 
-		"price" : 1100},
+		"price" : 1100,
+		"history" : [
+		]},
 		{"name" : "steve", 
-		"price" : 1200}
+		"price" : 1200,
+		"history" : [
+		]}
 		],
 	"creation" : "2014-01-12",
-	"end" : "2014-12-31",
-	"history" :{
-		"geoff" : [
-		],
-		"alex" : [
-		],
-		"steve" : [
-		]
-	}
+	"end" : "2014-12-31"
 }

@@ -1,56 +1,43 @@
 <div class="l-content">
 
+	<div class="back-button">
+	<a href="#/home">&#8592	 Back</a>
+	</div>
+
 	<div class="stockdetails pure-g-r">
+        <div class="pure-u-1-2">
+            <a href="#/home">
+	            <div class="l-box">
+	                <div class="bet-table-header">
+	                    <h2>{{ bet.ticker }}</h2>
 
-        <div class="pure-u-1-4">
+	                    <span class="bet-table-price">
+	                        {{ bet.price }} <span> {{ bet.rule }}</span>
+	                    </span>
+	                </div>
+	            </div>
+            </a>
+        </div>
+        <div class="pure-u-1-2">
             <div class="l-box">
-                <div class="bet-table-header">
-                    <h2>{{ bet.ticker }}</h2>
+                <h3 class="information-head">Bet Modifications</h3>
+				<table class="pure-table trades-table">
+				    <thead>
+				        <tr>
+				            <th></th>
+				            <th ng-repeat="player in bet.bets">{{ player.name }}</th>
+				        </tr>
+				    </thead>
 
-                    <span class="bet-table-price">
-                        {{ bet.price }} <span> {{ bet.rule }}</span>
-                    </span>
-                </div>
+				    <tbody>
+				        <tr class="pure-table-odd">
+				            <td>Current</td>
+				            <td ng-repeat="player in bet.bets">{{ player.price }}</td>
+				        </tr>
+				    </tbody>
+				</table>
             </div>
         </div>
-        <div class="pure-u-1-4">
-            <div class="l-box">
-                <h3 class="information-head">Stock</h3>
-			    <dl>
-				      <dt>Name</dt>
-				      <dd>{{quote.name}}</dd>
-				      <dt>Exchange</dt>
-				      <dd>{{quote.exchange}}</dd>
-			    </dl>
-            </div>
-        </div>
-        <div class="pure-u-1-4">
-            <div class="l-box">
-                <h3 class="information-head">Value</h3>
-			    <dl>
-			      <dt>Market Cap</dt>
-			      <dd>{{quote.marketcap}}</dd>
-			      <dt>Latest Price</dt>
-			      <dd>{{quote.price}}</dd>
-			      <dt>P/E</dt>
-			      <dd>{{quote.pe}}</dd>
-			    </dl>
-            </div>
-        </div>
-
-        <div class="pure-u-1-4">
-            <div class="l-box">
-                <h3 class="information-head">Stats</h3>
-			    <dl>
-			      <dt>52 Week High</dt>
-			      <dd>{{quote.52high}}</dd>
-			      <dt>52 Week Low</dt>
-			      <dd>{{quote.52low}}</dd>
-			      <dt>Volume</dt>
-			      <dd>Above Average</dd>
-			    </dl>
-            </div>
-        </div>	
     </div> 
 
 
