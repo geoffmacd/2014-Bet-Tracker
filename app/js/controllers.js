@@ -28,6 +28,8 @@ bettyControllers.controller('BetCtrl',  ['$scope', '$routeParams', 'Bet', 'Quote
 		$scope.bet = Bet.get({tickerId:$routeParams.tickerId});
 		//get quote for chart
 		$scope.quote = Quote.get({tickerId:$routeParams.tickerId});
+
+		$scope.myData = [10,20,30,40,60];
   	}]);
 
 //quote page with search and chart

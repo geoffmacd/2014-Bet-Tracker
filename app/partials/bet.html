@@ -1,58 +1,103 @@
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span2">
-      <!--History-->
-		<form ng-submit="getStock(query)">
-		      Search Stocks by Ticker: <input ng-model="query">
-		</form>
+<div class="l-content">
 
-		<ul>
-
-		</ul>
-
-    </div>
-    <div class="span10">
-    
-      <!--Body content-->
-
-      <div class="phones">
-		<ul class="specs">
+	<div class="pure-menu pure-menu-open pure-menu-horizontal betstatsdiv">
+		<ul class="quotestats">
+		  <li>
+		    <h2>{{quote.ticker}}</h2>
+		    <h5>{{bet.rule}}</h5>
+		    <h5>{{bet.bets.length}} participants</h5>
+		  </li>
+		  <li>
+		    <span>Name and Market</span>
+		    <dl>
+		      <dt>Name</dt>
+		      <dd>{{quote.name}}</dd>
+		      <dt>Exchange</dt>
+		      <dd>{{quote.exchange}}</dd>
+		    </dl>
+		  </li>
 		  <li>
 		    <span>Market Value</span>
 		    <dl>
 		      <dt>Market Cap</dt>
-		      <dd>{{stock.marketcap}}</dd>
+		      <dd>{{quote.marketcap}}</dd>
 		      <dt>Latest Price</dt>
-		      <dd>{{stock.price}}</dd>
+		      <dd>{{quote.price}}</dd>
 		      <dt>P/E</dt>
-		      <dd>{{stock.pe}}</dd>
+		      <dd>{{quote.pe}}</dd>
 		    </dl>
 		  </li>
 		  <li>
 		    <span>Trading Stats</span>
 		    <dl>
 		      <dt>52 Week High</dt>
-		      <dd>{{stock.high}}</dd>
+		      <dd>{{quote.52high}}</dd>
 		      <dt>52 Week Low</dt>
-		      <dd>{{stock.low}}</dd>
+		      <dd>{{quote.52low}}</dd>
+		      <dt>Volume</dt>
+		      <dd>Above Average</dd>
 		    </dl>
 		  </li>
-		  <li>
-		    <span>Name and Market</span>
-		    <dl>
-		      <dt>Name</dt>
-		      <dd>{{stock.name}}</dd>
-		      <dt>Exchange</dt>
-		      <dd>{{stock.exchange}}</dd>
-		    </dl>
-		  </li>
-		  </ul>
-      </div>
+	  </ul>
+	</div>
 
-      <div class="graph">
-      	<p>Sample Graph here</p>
-      </div>
+	<div class="chartDiv">
+		<h3>2014 Chart</h3>
+		 <bars-chart chart-data="myData"></bars-chart>
+		<div id='chart'>
+			<svg style='height:500px'> </svg>
+		</div>
+		<!--
+		<script>
+		d3.json('data/cumulativeLineData.json', function(data) {
 
-    </div>
-  </div>
+		  	nv.addGraph(function() {  
+				var chart = nv.models.lineChart();
+
+				chart.xAxis
+				.axisLabel('Time (ms)')
+				.tickFormat(d3.format(',r'));
+
+				chart.yAxis
+				.axisLabel('Voltage (v)')
+				.tickFormat(d3.format('.02f'));
+
+				d3.select('#chart svg')
+				.datum(sinAndCos())
+				.transition().duration(500)
+				.call(chart);
+
+				nv.utils.windowResize(function() { d3.select('#chart svg').call(chart) });
+
+				return chart;
+ 			});
+		});
+
+
+
+		function sinAndCos() {
+		   	var sin = [],
+		        cos = [];
+		 
+		   	for (var i = 0; i < 100; i++) {
+			    sin.push({x: i, y: Math.sin(i/10)});
+			    cos.push({x: i, y: .5 * Math.cos(i/10)});
+		   	}
+		 
+		   return [
+		    {
+		       values: sin,
+		       key: 'Sine Wave',
+		       color: '#ff7f0e'
+		    },
+		    {
+		       values: cos,
+		       key: 'Cosine Wave',
+		    	color: '#2ca02c'
+		   	}
+		    ];
+		}
+		</script>-->
+	</div>
+
 </div>

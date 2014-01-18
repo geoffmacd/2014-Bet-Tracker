@@ -1,5 +1,15 @@
 {
-	
+	"ticker" : "msft",
+	"rule" : "closest guess",
+	"price" : 37,
+	"bets" :  [
+		{"name" : "geoff", 
+		"price" : 23},
+		{"name" : "alex", 
+		"price" : 33},
+		{"name" : "steve", 
+		"price" : 35}
+		],
 	"creation" : "2014-01-12",
 	"end" : "2014-12-31",
 	"history" :{

@@ -1,5 +1,15 @@
 {
-	
+	"ticker" : "aapl",
+	"rule" : "closest guess",
+	"price" : 550,
+	"bets" : [
+			{"name" : "geoff", 
+			"price" : 600},
+			{"name" : "alex", 
+			"price" : 500},
+			{"name" : "steve", 
+			"price" : 550}
+			],
 	"creation" : "2014-01-12",
 	"end" : "2014-12-31",
 	"history" :{

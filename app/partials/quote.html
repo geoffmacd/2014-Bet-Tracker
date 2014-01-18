@@ -4,7 +4,7 @@
 			<!--Search query content-->
 			<p>Search from NYSE, NASDAQ, TSX by ticker only</p>
 
-			Search: <input ng-model="query" ng-change="getStock(query)" id="searchField">
+			Ticker: <input ng-model="query" ng-change="getStock(query)" id="searchField">
 		</div>
 
 		<div class="stockInfo">
@@ -21,9 +21,10 @@
 	</div>
 
 	<div class="chartDiv">
-		<!--d3.js chart-->
-  		<script src="lib/d3/d3.v3.js"></script>
+		<h3>2014 Chart</h3>
+		 <bars-chart chart-data="myData"></bars-chart>
+		<div id='chart'>
+			<svg style='height:500px'> </svg>
+		</div>
 	</div>
-
-
 </div>

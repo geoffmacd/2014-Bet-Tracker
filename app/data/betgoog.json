@@ -1,5 +1,15 @@
 {
-	
+	"ticker" : "goog",
+	"rule" : "closest guess",
+	"price" : 1100,
+	"bets" : [
+		{"name" : "geoff", 
+		"price" : 800},
+		{"name" : "alex", 
+		"price" : 1100},
+		{"name" : "steve", 
+		"price" : 1200}
+		],
 	"creation" : "2014-01-12",
 	"end" : "2014-12-31",
 	"history" :{

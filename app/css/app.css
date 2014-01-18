@@ -204,6 +204,45 @@ p {
 
 
 /*
+Overview View
+*/
+
+.ng-scope a {
+    text-decoration: initial;
+    color: grey;
+}
+
+
+/*
+Bet View
+*/
+
+.quotestats span {
+    font-weight: bold;
+}
+
+.quotestats > li {
+    padding-left: 5em;
+    vertical-align: top;
+}
+
+.betstatsdiv > ul {
+    margin-right: 2em;
+}
+
+.quotestats{
+}
+
+.betstatsdiv{
+    height: 10em;
+}
+
+.chartDiv{
+    padding: 1em 1em 0 1em;
+}
+
+
+/*
 Quote View
 */
 
@@ -257,7 +296,7 @@ Portfolio View
 }
 
 dd {
-	font-weight: bold;
+	color: #0431B4;
 }
 
 
@@ -271,9 +310,13 @@ dd {
     .banner-head {
         font-size: 3em;
     }
-	.login-form{
-		
-	}
+    .betstatsdiv{
+        height: 25em;
+    }
+    .view-container { 
+        padding-top: 7em;
+    }
+
 
 }
 
@@ -292,4 +335,7 @@ dd {
     .view-container { 
     	padding-top: 11em;
 	}
+    .betstatsdiv{
+        height: 40em;
+    }
 }

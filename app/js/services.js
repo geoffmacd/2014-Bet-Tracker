@@ -9,7 +9,7 @@ var betService = angular.module('bettyServices', ['ngResource']);
 
 betService.factory('Bet', ['$resource',
   function($resource){
-    return $resource('data/bet:betId.json', {}, {});
+    return $resource('data/bet:tickerId.json', {}, {});
   }]);
 
 betService.factory('Quote', ['$resource',
