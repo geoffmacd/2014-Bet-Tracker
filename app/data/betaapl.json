@@ -5,15 +5,18 @@
 	"bets" : [
 			{"name" : "geoff", 
 			"price" : 600,
-		"history" : [
+		"history" : [7,99
+		
 		]},
 			{"name" : "alex", 
 			"price" : 500,
-		"history" : [
+		"history" : [24,52
+		
 		]},
 			{"name" : "steve", 
 			"price" : 550,
-		"history" : [
+		"history" : [24,52
+		
 		]}
 			],
 	"creation" : "2014-01-12",

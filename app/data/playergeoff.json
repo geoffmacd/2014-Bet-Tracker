@@ -3,11 +3,64 @@
 	"joined" : "2014-01-12",
 	"password"	: "test",
 	"bets" : [
-			{ "betTicker":"aapl",
-			"bet" : 570 },
-			{ "betTicker":"msft",
-			"bet" : 31 },
-			{ "betTicker":"goog",
-			"bet" : 700 }
+			{
+				"ticker" : "goog",
+				"rule" : "closest guess",
+				"price" : 1100,
+				"bet" : 700,
+				"place" : 2,
+				"bets" : [
+					{"name" : "alex", 
+					"price" : 1100,
+					"history" : [
+					]},
+					{"name" : "steve", 
+					"price" : 1200,
+					"history" : [
+					]}
+					],
+				"creation" : "2014-01-12",
+				"end" : "2014-12-31"
+			},
+			{
+				"ticker" : "aapl",
+				"rule" : "closest guess",
+				"price" : 550,
+				"place" : 1,
+				"bet" : 700,
+				"bets" : [
+						{"name" : "alex", 
+						"price" : 500,
+					"history" : [24,52
+					
+					]},
+						{"name" : "steve", 
+						"price" : 550,
+					"history" : [24,52
+					
+					]}
+						],
+				"creation" : "2014-01-12",
+				"end" : "2014-12-31"
+			},
+			{
+				"ticker" : "msft",
+				"rule" : "closest guess",
+				"price" : 37,
+				"place" : 3,
+				"bet" : 24,
+				"bets" :  [
+					{"name" : "alex", 
+					"price" : 33,
+					"history" : [24
+					]},
+					{"name" : "steve", 
+					"price" : 35,
+					"history" : [17,33,39
+					]}
+					],
+				"creation" : "2014-01-12",
+				"end" : "2014-12-31"
+			}
 		]
 }

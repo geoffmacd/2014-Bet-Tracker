@@ -1,21 +1,37 @@
-<div class="basicInfo">
-  <h3>Basic Info</h2>
+<div class="l-content">
 
-  <dt>Name: </dt>
-  <dd>{{ player.name}}</dd>
-  <br>
-  <dt>Joined: </dt>
-  <dd>{{ player.joined}}</dd>
-</div>
+  <div class="basicInfo">
+    <h3>Basic Info</h2>
 
-<div class="betListDiv">
-            
-  <h3>Your Bets</h2>
-  <ul class="betList">
-    <li ng-repeat="bet in player.bets">
-      <a href="#/quote/{{bet.betTicker}}"><span>{{bet.betTicker}}</span></a> : 
-      Your bet: {{bet.bet}}
-    </li>
-  </ul>
+    <dt>Name: </dt>
+    <dd>{{ player.name}}</dd>
+    <br>
+    <dt>Joined: </dt>
+    <dd>{{ player.joined}}</dd>
+  </div>
+
+  <div class="betListDiv">       
+    <h3>Your Bets</h2>
+    <table class="pure-table trades-table">
+      <thead>
+          <tr>
+              <th>Ticker</th>
+              <th>Rule</th>
+              <th>Price</th>
+              <th>Place</th>
+          </tr>
+      </thead>
+
+      <tbody>
+          <tr ng-repeat="bet in player.bets">
+              <td><a href="#/bet/{{bet.ticker}}">{{bet.ticker}}</td>
+              <td>{{bet.rule}}</td>
+              <td>{{bet.bet}}</td>
+              <td> {{bet.place}} / {{bet.bets.length + 1}}</td>
+          </tr>
+      </tbody>
+    </table>
+
+  </div>
 
 </div>

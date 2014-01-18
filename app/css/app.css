@@ -228,7 +228,7 @@ Bet View
 }
 
 .chartDiv{
-    padding: 1em 1em 0 0;
+    padding: 0 1em 0 0;
 }
 .chartDiv h3{
     padding-left: 2em;
@@ -240,6 +240,7 @@ Bet View
 }
 
 .back-button{
+    padding-left: 1em;
     position: absolute;
 }
 
@@ -263,7 +264,7 @@ Quote View
 }
 
 .queryDiv{
-	padding: 0 0 1em 2em;
+	padding: 0 0 0.5em 2em;
 }
 
 #searchField {
@@ -288,8 +289,9 @@ Portfolio View
 }
 
 .betListDiv {
+    padding-right: 1em;
 	float:right;
-	width: 50%;
+	width: 60%;
 	border:2px;
 	display: inline-block;
 }

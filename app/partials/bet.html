@@ -34,6 +34,10 @@
 				            <td>Current</td>
 				            <td ng-repeat="player in bet.bets">{{ player.price }}</td>
 				        </tr>
+				        <tr ng-repeat="line in history">
+				            <td>Old</td>
+				            <td ng-repeat="old in line track by old.name">{{ old.value }}</td>
+				        </tr>
 				    </tbody>
 				</table>
             </div>

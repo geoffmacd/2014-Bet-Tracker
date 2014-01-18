@@ -41,6 +41,32 @@ bettyControllers.controller('BetCtrl',  ['$scope', '$routeParams', 'Bet', 'Quote
 		   }
 		});
 
+	    //compile bet rows
+	    $scope.$watch('bet.bets', function() {
+
+	    	var max = 0;
+	    	for (var i = 0; i < $scope.bet.bets.length; i++) {
+	    		var num = $scope.bet.bets[i].history.length;
+	    		if(num > max)
+	    			max = num;
+			}
+
+			//make max rows
+			var rows = []
+			for (var k = 0; k < max; k++) {
+				var row = [];
+				for (var i = 0; i < $scope.bet.bets.length; i++) {
+					var old = $scope.bet.bets[i].history[k];
+					if(old)
+			    		row.push({value:old, name: $scope.bet.bets[i].name});
+			    	else	
+			    		row.push({value:'', name: $scope.bet.bets[i].name});
+				}
+	    		rows.push(row)
+			}
+			$scope.history = rows;
+		});
+
 		function compileSeries(){
 			//add all bets + stock chart
 			var series = [];
@@ -61,7 +87,7 @@ bettyControllers.controller('BetCtrl',  ['$scope', '$routeParams', 'Bet', 'Quote
 				sin.push({x: i, y: Math.sin(i/10)});
 				cos.push({x: i, y: .5 * Math.cos(i/10)});
 			}
-              
+
 			return sinAndCos;
 		}
 
