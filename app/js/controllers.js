@@ -19,8 +19,18 @@ bettyControllers.controller('StandingsCtrl', ['$scope', 'Player',
 
 			if(result){
 				console.log(result);
-				$scope.myData = seriesArray([result[0].chart,result[1].chart,result[2].chart],
-					[result[0].name,result[1].name,result[1].name]);
+
+				//get chart and names
+				var d = [],
+					n = [];
+
+				for (var i = 0; i < result.length; i++) {
+					d.push(result[i].chart);
+					n.push(result[i].name);
+				};
+
+				//show chart
+				$scope.myData = seriesArray(d,n);
 			} else {
 				$scope.myData = null;
 			}
