@@ -347,3 +347,9 @@ dd {
         height: 40em;
     }
 }
+
+@media (max-width: 494px) {
+    .l-content {
+        margin-top: 2em;
+    }
+}
