@@ -12,18 +12,21 @@
       <thead>
           <tr>
               <th>Ticker</th>
-              <th>Price</th>
-              <th>Performance</th>
+              <th>Book Price ($/share</th>
+              <th>Market Price ($/share)</th>
+              <th>Performance (%)</th>
           </tr>
       </thead>
 
       <tbody>
           <tr ng-repeat="ticker in player.tickers">
               <td><a href="#/quote/{{ticker.ticker}}">{{ticker.ticker}}</td>
+              <td>{{ticker.startprice}}</td>
               <td>{{ticker.price}}</td>
               <td>{{ticker.performance}}</td>
           </tr>
           <tr>
+              <td></td>
               <td></td>
               <td></td>
               <td>{{player.performance}}</td>
