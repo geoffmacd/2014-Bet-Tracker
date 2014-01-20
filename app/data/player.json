@@ -1,5 +1,74 @@
 [
-	"geoff",
-	"alex",
-	"steve"
+	{
+	"name" : "geoff",
+	"performance" : "43.2",
+	"chart" : [
+		0,1,4,5,2,1,3,6,8,2,11,12,13,14,11,17,18,15,16,18
+	],
+	"tickers" : [
+			{
+				"ticker" : "goog",
+				"price" : 1100,	
+				"performance" : 10	
+			},
+			{
+				"ticker" : "aapl",
+				"price" : 550,	
+				"performance" : 10	
+			},
+			{
+				"ticker" : "msft",
+				"price" : 37,	
+				"performance" : 10	
+			}
+		]
+	},
+	{
+	"name" : "alex",
+	"performance" : "43.2",
+	"chart" : [
+		0,7,8,5,2,1,3,6,8,2,10,11,12,17,11,17,14,12,15,18
+	],
+	"tickers" : [
+			{
+				"ticker" : "goog",
+				"price" : 1100,	
+				"performance" : 10	
+			},
+			{
+				"ticker" : "aapl",
+				"price" : 550,	
+				"performance" : 10	
+			},
+			{
+				"ticker" : "msft",
+				"price" : 37,	
+				"performance" : 10	
+			}
+		]
+	},
+	{
+	"name" : "steve",
+	"performance" : "43.2",
+	"chart" : [
+		0,1,4,5,2,2,4,6,8,7,11,16,17,14,11,16,18,15,14,14
+	],
+	"tickers" : [
+			{
+				"ticker" : "goog",
+				"price" : 1100,	
+				"performance" : 10	
+			},
+			{
+				"ticker" : "aapl",
+				"price" : 550,	
+				"performance" : 10	
+			},
+			{
+				"ticker" : "msft",
+				"price" : 37,	
+				"performance" : 10	
+			}
+		]
+	}
 ]

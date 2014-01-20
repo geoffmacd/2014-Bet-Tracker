@@ -25,12 +25,12 @@ betDirectives.directive('stockChart', function ($parse) {
               var chart = nv.models.lineChart();
 
               chart.xAxis
-              .axisLabel('Time (ms)')
+              .axisLabel('Date')
               .tickFormat(d3.format(',r'));
 
               chart.yAxis
-              .axisLabel('Voltage (v)')
-              .tickFormat(d3.format('.02f'));
+              .axisLabel('Performance (%)')
+              .tickFormat(d3.format('.0f'));
 
               d3.select('#chart svg')
               .datum(scope.data)
@@ -74,11 +74,14 @@ directive('activeLink', ['$location', function(location) {
         link: function(scope, element, attrs, controller) {
             var clazz = attrs.activeLink;
             var path = attrs.href;
-            path = path.substring(1); //hack because path does bot return including hashbang
+            path = path.split('/'); //always includes first slash
             scope.location = location;
-            console.log(path);
+            console.log(path[1]);
             scope.$watch('location.path()', function(newPath) {
-                if (path === newPath) {
+                newPath = newPath.split('/'); //always includes first slash
+                console.log(path[1]);
+                console.log(newPath[1]);
+                if (path[1] === newPath[1]) {
                     element.parent().addClass(clazz);
                 } else {
                     element.parent().removeClass(clazz);

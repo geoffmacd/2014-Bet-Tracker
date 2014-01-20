@@ -4,167 +4,164 @@
 
 var bettyControllers  = angular.module('bettyControllers', []);
 
-//show n by 3 rows of all bets with current prices
-bettyControllers.controller('OverviewCtrl', ['$scope', 'Bet',
-	function($scope, Bet) {
+//scores - shows top 3 in divs and graph of each players performance
+bettyControllers.controller('StandingsCtrl', ['$scope', 'Player',
+	function($scope, Player) {
 
-		//gets array of all bets
-		$scope.bets = Bet.query();
-  	}]);
-
-//portfolio - list all bets with prices for player
-bettyControllers.controller('PlayerCtrl',  ['$scope', '$routeParams',  'Player',
-	function($scope,$routeParams, Player) {
-
-		//get all the player specific bets 
-		$scope.player = Player.get({playerId:$routeParams.playerId});
-  	}]);
-
-//betting page with chart and modifications
-bettyControllers.controller('BetCtrl',  ['$scope', '$routeParams', 'Bet', 'Quote',
-	function($scope,$routeParams, Bet, Quote) {
-
-		//get specific bet history 
-		$scope.bet = Bet.get({tickerId:$routeParams.tickerId});
-		//get quote for chart
-		$scope.quote = Quote.get({tickerId:$routeParams.tickerId});
-
+		//chart
 		$scope.myData = [];
-	    $scope.$watch('quote.price', function() {
 
-		   if($scope.quote.price > 0){
-		   		//alert('found');
-				$scope.myData = compileSeries();
-		   } else {
-		   		console.log('none');
-				$scope.myData = [];
-		   }
+		//gets array of all players
+		$scope.players = Player.query();
+
+		$scope.players.$promise.then(function(result){
+			$scope.players = result;
+
+			if(result){
+				console.log(result);
+				$scope.myData = seriesArray([result[0].chart,result[1].chart,result[2].chart],
+					[result[0].name,result[1].name,result[1].name]);
+			} else {
+				$scope.myData = null;
+			}
 		});
 
-	    //compile bet rows
-	    $scope.$watch('bet.bets', function() {
 
-	    	var max = 0;
-	    	for (var i = 0; i < $scope.bet.bets.length; i++) {
-	    		var num = $scope.bet.bets[i].history.length;
-	    		if(num > max)
-	    			max = num;
-			}
-
-			//make max rows
-			var rows = []
-			for (var k = 0; k < max; k++) {
-				var row = [];
-				for (var i = 0; i < $scope.bet.bets.length; i++) {
-					var old = $scope.bet.bets[i].history[k];
-					if(old)
-			    		row.push({value:old, name: $scope.bet.bets[i].name});
-			    	else	
-			    		row.push({value:'', name: $scope.bet.bets[i].name});
-				}
-	    		rows.push(row)
-			}
-			$scope.history = rows;
-		});
-
-		function compileSeries(){
-			//add all bets + stock chart
-			var series = [];
-              var sin = [],
-                  cos = [];
-           
-           	//add all players current bets
-			for (var i = 0; i < $scope.bet.bets.length; i++) {
-
-				series.push({
-					key: $scope.bet.bets[i].name, 
-					values: $scope.bet.bets[i].price,
-				    color: '#ff7f0e'
-				});
-			}
-
-			for (var i = 0; i < 100; i++) {
-				sin.push({x: i, y: Math.sin(i/10)});
-				cos.push({x: i, y: .5 * Math.cos(i/10)});
-			}
-
-			return sinAndCos;
-		}
-
-		function sinAndCos() {
-			var sin = [],
-			  cos = [];
-
-			for (var i = 0; i < 100; i++) {
-				sin.push({x: i, y: Math.sin(i/10)});
-				cos.push({x: i, y: .5 * Math.cos(i/10)});
-			}
-
-			return [
-			  {
-			     values: sin,
-			     key: 'Sine Wave',
-			     color: '#ff7f0e'
-			  },
-			  {
-			     values: cos,
-			     key: 'Cosine Wave',
-			    color: '#2ca02c'
-			  }
-			];
-         }
   	}]);
 
-//quote page with search and chart
+//no portfolio, select to see
+bettyControllers.controller('NoPortfolioCtrl', ['$scope', 'Player',
+	function($scope, Player) {
+
+
+		//gets array of all players
+		$scope.players = Player.query();
+
+		$scope.players.$promise.then(function(result){
+			$scope.players = result;
+		});
+  	}]);
+
+//portfolio - list all bets with prices for player and performance with possible parameter
+bettyControllers.controller('PortfolioCtrl',  ['$scope', '$routeParams',  'Player', 'Quote', 
+	function($scope,$routeParams, Player, Quote) {
+
+		//chart
+		$scope.myData = [];
+
+		//get the player 
+		$scope.player = Player.get({playerId:$routeParams.playerId});
+
+		//show the chart when player comes in
+		$scope.player.$promise.then(function(result){
+			$scope.player = result;
+
+			if(result){
+				console.log(result);
+
+				//get chart and names
+				var d = [],
+					n = [];
+
+				for (var i = 0; i < result.tickers.length; i++) {
+					d.push(result.tickers[i].chart);
+					n.push(result.tickers[i].ticker);
+				};
+
+				//show chart
+				$scope.myData = seriesArray(d,n);
+			} else {
+				$scope.myData = null;
+			}
+		});
+
+  	}]);
+
+//quote page with search and chart with possible parameter
 bettyControllers.controller('QuoteCtrl', ['$scope', '$routeParams', 'Quote', 
 	function($scope,$routeParams, Quote) {
+
+		//chart
+		$scope.myData = [];
 
 		//show stock if id provided 
 		if($routeParams.tickerId){
 			//get stock data immediately
-			$scope.quote = Quote.get({tickerId:$routeParams.tickerId});
+			$scope.quote = Quote.get({tickerId:$routeParams.tickerId}).$promise.then(showChart);
 			//put ticker inside search field
 			$scope.query = $routeParams.tickerId;
 		}
 
 		//called on input submission
 		$scope.getStock = function(tickerId) {
+			//reset chart
+			$scope.myData = null;
 			//ticker Id should always be equal to $scope.query
-	      	$scope.quote = Quote.get({tickerId:tickerId});
+	      	$scope.quote = Quote.get({tickerId:tickerId}).$promise.then(showChart);
 	    }
 
-		$scope.myData = [];
-	    $scope.$watch('quote.price', function() {
+	    function showChart(result){
+				$scope.quote = result;
 
-		   if($scope.quote.price){
-				$scope.myData = sinAndCos;
-		   } else {
-		   		console.log('none');
-				$scope.myData = null;
-		   }
-		});
-
-		function sinAndCos() {
-              var sin = [],
-                  cos = [];
-           
-              for (var i = 0; i < 100; i++) {
-                sin.push({x: i, y: Math.sin(i/10)});
-                cos.push({x: i, y: .5 * Math.cos(i/10)});
-              }
-           
-              return [
-	              {
-	                 values: sin,
-	                 key: 'Sine Wave',
-	                 color: '#ff7f0e'
-	              },
-	              {
-	                 values: cos,
-	                 key: 'Cosine Wave',
-	                color: '#2ca02c'
-	              }
-              ];
-         }
+				if(result){
+					console.log(result);
+					$scope.myData = seriesArray([result.chart],[result.ticker]);
+				} 
+			}
 
   	}]);
+
+
+function seriesArray(d,names){
+
+	var a = [];
+
+	for (var i = 0; i < d.length; i++) {
+		a.push([]);
+	};
+   
+    for (var i = 0; i < d.length; i++) {
+
+    	for (var k = 0; k < d[i].length; k++) {
+        	a[i].push({x: k, y: d[i][k]});
+    	}
+    }
+   
+    var k = [];
+
+	for (var i = 0; i < d.length; i++) {
+		k.push({
+	     values: a[i],
+	     key: names[i],
+	     color: '#ff7f0e'
+	  });
+	};
+
+	console.log(k);
+
+	return k;
+}
+
+
+function sinAndCos() {
+      var sin = [],
+          cos = [];
+   
+      for (var i = 0; i < 100; i++) {
+        sin.push({x: i, y: Math.sin(i/10)});
+        cos.push({x: i, y: .5 * Math.cos(i/10)});
+      }
+   
+      return [
+          {
+             values: sin,
+             key: 'Sine Wave',
+             color: '#ff7f0e'
+          },
+          {
+             values: cos,
+             key: 'Cosine Wave',
+            color: '#2ca02c'
+          }
+      ];
+}

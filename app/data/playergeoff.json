@@ -1,66 +1,26 @@
 {
 	"name" : "geoff",
-	"joined" : "2014-01-12",
-	"password"	: "test",
-	"bets" : [
+	"performance" : "43.2",
+	"place": 1,
+	"tickers" : [
 			{
 				"ticker" : "goog",
-				"rule" : "closest guess",
-				"price" : 1100,
-				"bet" : 700,
-				"place" : 2,
-				"bets" : [
-					{"name" : "alex", 
-					"price" : 1100,
-					"history" : [
-					]},
-					{"name" : "steve", 
-					"price" : 1200,
-					"history" : [
-					]}
-					],
-				"creation" : "2014-01-12",
-				"end" : "2014-12-31"
+				"price" : 1100,	
+				"performance" : 20,
+				"chart" : [0,1,4,5,2,1,3,6,8,2,11,12,13,14,11,17,18,15,16,18]	
 			},
 			{
 				"ticker" : "aapl",
-				"rule" : "closest guess",
-				"price" : 550,
-				"place" : 1,
-				"bet" : 700,
-				"bets" : [
-						{"name" : "alex", 
-						"price" : 500,
-					"history" : [24,52
-					
-					]},
-						{"name" : "steve", 
-						"price" : 550,
-					"history" : [24,52
-					
-					]}
-						],
-				"creation" : "2014-01-12",
-				"end" : "2014-12-31"
+				"price" : 550,	
+				"performance" : 5	,
+				"chart" : [0,7,8,5,2,1,3,6,8,2,10,11,12,17,11,17,14,12,15,18]	
 			},
 			{
 				"ticker" : "msft",
-				"rule" : "closest guess",
-				"price" : 37,
-				"place" : 3,
-				"bet" : 24,
-				"bets" :  [
-					{"name" : "alex", 
-					"price" : 33,
-					"history" : [24
-					]},
-					{"name" : "steve", 
-					"price" : 35,
-					"history" : [17,33,39
-					]}
-					],
-				"creation" : "2014-01-12",
-				"end" : "2014-12-31"
+				"price" : 33,	
+				"performance" : 20	,
+				"chart" : [0,1,4,5,2,2,4,6,8,7,11,16,17,14,11,16,18,15,14,14]	
 			}
 		]
 }
+

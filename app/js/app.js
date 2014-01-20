@@ -12,17 +12,17 @@ angular.module('betty', [
 config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/home', {
-        templateUrl: 'partials/home.html',
-        controller: 'OverviewCtrl'
+      when('/standings', {
+        templateUrl: 'partials/standings.html',
+        controller: 'StandingsCtrl'
       }).
       when('/portfolio/:playerId', {
-        templateUrl: 'partials/portfolio.html',
-        controller: 'PlayerCtrl'
+        templateUrl: 'partials/aportfolio.html',
+        controller: 'PortfolioCtrl'
       }).
-      when('/bet/:tickerId', {
-        templateUrl: 'partials/bet.html',
-        controller: 'BetCtrl'
+      when('/portfolio', {
+        templateUrl: 'partials/portfolio.html',
+        controller: 'NoPortfolioCtrl'
       }).
       when('/quote/:tickerId', {
         templateUrl: 'partials/quote.html',
@@ -33,7 +33,7 @@ config(['$routeProvider',
         controller: 'QuoteCtrl'
       }).
       otherwise({
-        redirectTo: '/home'
+        redirectTo: '/standings'
       });
   }
 ]);

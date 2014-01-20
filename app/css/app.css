@@ -244,9 +244,7 @@ Bet View
 
 .back-button{
     font-size: larger;
-    padding-left: 1em;
-    position: absolute;
-    margin-top: 4em;
+    margin: 1em 0 1em 0.5em;
 }
 
 /*
@@ -332,11 +330,6 @@ dd {
     .betstatsdiv{
         height: 25em;
     }
-    .view-container { 
-        padding-top: 7em;
-    }
-
-
 }
 
 /*
@@ -346,14 +339,10 @@ dd {
 @media (max-width: 480px) {
     .banner {
     	height: 400px;
-        
     }
     .banner-head {
         font-size: 2em;
     }
-    .view-container { 
-    	padding-top: 11em;
-	}
     .betstatsdiv{
         height: 40em;
     }

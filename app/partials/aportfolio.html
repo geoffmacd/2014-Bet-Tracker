@@ -1,0 +1,55 @@
+<div class="l-content">
+  <div class="title">  
+    <h3>{{ player.name}}'s Portfolio</h3>
+  </div>
+
+  <div class="back-button">
+    <a href="#/portfolio">&#8592  Back</a>
+  </div>
+
+  <div class="betListDiv">     
+    <table class="pure-table trades-table">
+      <thead>
+          <tr>
+              <th>Ticker</th>
+              <th>Price</th>
+              <th>Performance</th>
+          </tr>
+      </thead>
+
+      <tbody>
+          <tr ng-repeat="ticker in player.tickers">
+              <td><a href="#/quote/{{ticker.ticker}}">{{ticker.ticker}}</td>
+              <td>{{ticker.price}}</td>
+              <td>{{ticker.performance}}</td>
+          </tr>
+          <tr>
+              <td></td>
+              <td></td>
+              <td>{{player.performance}}</td>
+          </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="basicInfo">
+    <h3>Basic Info</h3>
+    <dt>Name: </dt>
+    <dd>{{ player.name}}</dd>
+    <br>
+    <dt>Place: </dt>
+    <dd>{{ player.place}}</dd>
+  </div>
+
+  <!-- graph of all portfolio stocks -->
+  <div class="chartDiv">
+      <h3>2014 Chart</h3>
+      <stock-chart chart-data="myData"></stock-chart>
+      <div id='chart'>
+          <svg style='height:500px'> </svg>
+      </div>
+  </div>
+
+
+</div>
