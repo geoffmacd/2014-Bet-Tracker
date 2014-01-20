@@ -2,12 +2,12 @@
 	"name" : "geoff",
 	"performance" : "43.2",
 	"place": 1,
-	"tickers" : [
+	"tickers" : [	
 			{
 				"ticker" : "goog",
 				"startprice" : 700,	
 				"price" : 1100,	
-				"performance" : 20,
+				"performance" : 50,
 				"chart" : [0,1,4,5,2,1,3,6,8,2,11,12,13,14,11,17,18,15,16,18]	
 			},
 			{

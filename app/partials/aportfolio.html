@@ -23,13 +23,13 @@
               <td><a href="#/quote/{{ticker.ticker}}">{{ticker.ticker}}</td>
               <td>{{ticker.startprice}}</td>
               <td>{{ticker.price}}</td>
-              <td>{{ticker.performance}}</td>
+              <td ng-style="{color: ticker.color}">{{ticker.performance}}</td>
           </tr>
           <tr>
               <td></td>
               <td></td>
               <td></td>
-              <td>{{player.performance}}</td>
+              <td ng-style="{color: player.color}"{{player.performance}}</td>
           </tr>
       </tbody>
     </table>

@@ -19,10 +19,10 @@
                     <ul class="bet-table-list">
                         <!-- sorted by performance-->
                         <li ng-repeat="ticker in player.tickers track by ticker.ticker">
-                        <!-- color accd to performance -->
-                        <a href="#/quote/{{ ticker.ticker }}">
-                        {{ ticker.ticker }} - {{ ticker.performance }}
-                        </a>
+                            <!-- color accd to performance -->
+                            <a href="#/quote/{{ ticker.ticker }}" ng-style="{color: ticker.color}">
+                            {{ ticker.ticker }}    {{ ticker.performance }} %
+                            </a>
                         </li>
                     </ul>
                 </div>

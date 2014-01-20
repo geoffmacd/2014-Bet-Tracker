@@ -16,7 +16,6 @@ bettyControllers.controller('StandingsCtrl', ['$scope', 'Player',
 
 		$scope.players.$promise.then(function(result){
 			$scope.players = result;
-
 			if(result){
 				console.log(result);
 
@@ -24,9 +23,18 @@ bettyControllers.controller('StandingsCtrl', ['$scope', 'Player',
 				var d = [],
 					n = [];
 
+				//color scale
+				var colorScale = d3.scale.linear()
+				    .domain([-50,50])
+				    .range(["red", "green"]);
+
 				for (var i = 0; i < result.length; i++) {
 					d.push(result[i].chart);
 					n.push(result[i].name);
+
+					for(var k = 0; k < result[i].tickers.length; k++){
+						result[i].tickers[k].color = colorScale(result[i].tickers[k].performance);
+					}
 				};
 
 				//show chart
@@ -49,6 +57,22 @@ bettyControllers.controller('NoPortfolioCtrl', ['$scope', 'Player',
 
 		$scope.players.$promise.then(function(result){
 			$scope.players = result;
+
+			if(result){
+				console.log(result);
+
+				//color scale
+				var colorScale = d3.scale.linear()
+				    .domain([-50,50])
+				    .range(["red", "green"]);
+
+				for (var i = 0; i < result.length; i++) {
+					//colorize tickers
+					for(var k = 0; k < result[i].tickers.length; k++){
+						result[i].tickers[k].color = colorScale(result[i].tickers[k].performance);
+					}
+				}
+			}
 		});
   	}]);
 
@@ -69,6 +93,11 @@ bettyControllers.controller('PortfolioCtrl',  ['$scope', '$routeParams',  'Playe
 			if(result){
 				console.log(result);
 
+				//color scale
+				var colorScale = d3.scale.linear()
+				    .domain([-50,50])
+				    .range(["red", "green"]);
+
 				//get chart and names
 				var d = [],
 					n = [];
@@ -76,7 +105,12 @@ bettyControllers.controller('PortfolioCtrl',  ['$scope', '$routeParams',  'Playe
 				for (var i = 0; i < result.tickers.length; i++) {
 					d.push(result.tickers[i].chart);
 					n.push(result.tickers[i].ticker);
+					//colorize tickers
+
+					result.tickers[i].color = colorScale(result.tickers[i].performance);
 				};
+
+				result.color = colorScale(result.performance);
 
 				//show chart
 				$scope.myData = seriesArray(d,n);
@@ -124,7 +158,9 @@ bettyControllers.controller('QuoteCtrl', ['$scope', '$routeParams', 'Quote',
 
 function seriesArray(d,names){
 
-	var a = [];
+	var a = [],
+		c = [];
+    var p = d3.scale.category10().domain(d3.range(10));
 
 	for (var i = 0; i < d.length; i++) {
 		a.push([]);
@@ -135,15 +171,24 @@ function seriesArray(d,names){
     	for (var k = 0; k < d[i].length; k++) {
         	a[i].push({x: k, y: d[i][k]});
     	}
+
+    	//assign color
+		if(d.length > 1){
+			c.push(p(i));
+		} else {
+			c.push('#ff7f0e');
+		}
     }
    
     var k = [];
+
+
 
 	for (var i = 0; i < d.length; i++) {
 		k.push({
 	     values: a[i],
 	     key: names[i],
-	     color: '#ff7f0e'
+	     color: c[i]
 	  });
 	};
 
