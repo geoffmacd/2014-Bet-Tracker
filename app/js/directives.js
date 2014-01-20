@@ -49,7 +49,6 @@ betDirectives.directive('stockChart', function ($parse) {
                   .datum(newData)
                   .transition().duration(500)
                   .call(chart);
-                console.log(result);  
                 } else {
                   //remove and replace with text
                   d3.select('#chart svg g').remove();
