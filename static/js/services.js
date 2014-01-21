@@ -9,7 +9,9 @@ var betService = angular.module('bettyServices', ['ngResource']);
 
 betService.factory('Quote', ['$resource',
   function($resource){
-    return $resource('data/quotes/:tickerId', {}, {});
+    return $resource('data/quotes/:tickerId', {}, {
+      get: {method:'GET', timeout:8000}
+    });
   }]);
 
 betService.factory('Player', ['$resource',

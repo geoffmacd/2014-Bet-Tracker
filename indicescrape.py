@@ -11,8 +11,15 @@ client = MongoClient('localhost',27017)
 def getTickerHistory(ticker):
 	chart = getTickerHistoryFromDb(ticker)
 	if len(chart) < 2:
+		#going to web
+		print 'went to web for: ' + ticker
 		webFormat = getTickerHistoryFromWeb(ticker)
-		chart = formatTickers(webFormat)
+		if webFormat:
+			#save the stock for future reuse
+			dbSaveTickerHistory(webFormat,ticker)
+			chart = formatTickers(webFormat)
+		else:
+			return None
 	return chart
 
 #uses db
@@ -26,7 +33,11 @@ def getTickerHistoryFromDb(ticker):
 
 #uses pyq
 def getTickerHistoryFromWeb(ticker):
-	data = pyq.get_yahoo_ticker_historical('20140101', time.strftime("%Y%m%d"),ticker)
+	try:
+		data = pyq.get_yahoo_ticker_historical('20140101', time.strftime("%Y%m%d"),ticker)
+	except:
+		print 'could not find on web' + ticker
+		return None
 	#reverse list so that end is latest
 	data.reverse() 
 	#save only date and price

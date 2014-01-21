@@ -69,7 +69,6 @@ def getAllPlayers():
 			for i in range(len(totalP[0])):
 				total[i] += ticker[i] * 100 / len(totalP)
 		p['chart'] = total
-		print total
 		a.append(p)
 	#sort players by performance
 	a.sort(key=lambda k: float(k['performance']),reverse=True)
@@ -109,20 +108,13 @@ def getPlayer(playername):
 
 #gets more details on each player with all ticker charts
 def getTicker(tickername):
-	# collection = client.stocks[tickername]
-	# #return all prices
-	# prices = [tickPrice for tickPrice in collection.find()]
-	# if len(prices) > 1:
-	# 	#strip the dates out since we know this
-	# 	chart = map((lambda l: round(float(l['price']),4)),prices)
-	# 	if len(chart) > 0:
-	# 		ticker = {'ticker':tickername, 'chart': chart, 'price': chart[-1],'52low':min(chart), '52high':max(chart)}
-	# 		return ticker
-	# else:
-	# 	#scrape and return
 	chart = indicescrape.getTickerHistory(tickername)
-	ticker = {'ticker':tickername.upper(), 'chart': chart, 'price': chart[-1],'52low':min(chart), '52high':max(chart)}
-	return ticker
+	if chart:
+		ticker = {'ticker':tickername.upper(), 'chart': chart, 'price': chart[-1],'52low':min(chart), '52high':max(chart)}
+		return ticker
+	else:
+		return None
+	
 
 
 @app.route('/data/players')
@@ -141,8 +133,12 @@ def apiplayer(playername):
 def apiticker(tickername):
 	print 'requesting stock price ' + tickername
 	stock = getTicker(tickername)
-	resp = response(stock)
-	return resp
+	if stock is not None:
+		resp = response(stock)
+		return resp
+	else:
+		resp = badResponse()
+		return resp	
 
 #any route goes to index
 @app.route('/')

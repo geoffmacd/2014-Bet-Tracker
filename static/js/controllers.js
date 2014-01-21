@@ -124,8 +124,8 @@ bettyControllers.controller('PortfolioCtrl',  ['$scope', '$routeParams',  'Playe
   	}]);
 
 //quote page with search and chart with possible parameter
-bettyControllers.controller('QuoteCtrl', ['$scope', '$routeParams', 'Quote', 
-	function($scope,$routeParams, Quote) {
+bettyControllers.controller('QuoteCtrl', ['$scope', '$routeParams', '$q','Quote', 
+	function($scope,$routeParams,$q, Quote) {
 
 		//chart
 		$scope.myData = [];
@@ -140,12 +140,18 @@ bettyControllers.controller('QuoteCtrl', ['$scope', '$routeParams', 'Quote',
 
 		//called on input submission
 		$scope.getStock = function(tickerId) {
+
+			//cancel any previous requests
+			if($scope.quote)
+				$q.when($scope.quote)
+
 			//reset chart
 			$scope.myData = null;
 			$scope.quote = null;
 			//ticker Id should always be equal to $scope.query, only try if it exists
-			if(tickerId.length)
+			if(tickerId.length){
 	      		$scope.quote = Quote.get({tickerId:tickerId}).$promise.then(showChart);
+			}
 	    }
 
 	    function showChart(result){

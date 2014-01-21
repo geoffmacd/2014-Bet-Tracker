@@ -128,8 +128,6 @@ directive('autoFocus', function($timeout) {
   }
 });
 
-
-
 function formatChartData(data){
 
   //weekdays at 2014 jan 01
@@ -147,10 +145,6 @@ function formatChartData(data){
 
   return data;
 }
-
-
-
-
 
 weekday = (function() {
  
