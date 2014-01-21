@@ -144,6 +144,8 @@ bettyControllers.controller('QuoteCtrl', ['$scope', '$routeParams', '$q','Quote'
 			//cancel any previous requests
 			if($scope.quote)
 				$q.when($scope.quote)
+			// if($scope.quote)
+			// 	$q.when($scope.quote)
 
 			//reset chart
 			$scope.myData = null;

@@ -198,7 +198,7 @@ Overview View
 
 .ng-scope a {
     text-decoration: initial;
-    color: grey;
+    /*color: grey;*/
 }
 
 
@@ -309,7 +309,11 @@ Portfolio View
 }
 
 dd {
-	color: #0431B4;
+	color: #2c4985;
+}
+
+td a {
+    color: #2c4985;
 }
 
 
