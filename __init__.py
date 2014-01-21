@@ -56,7 +56,7 @@ def getAllPlayers():
 			#append normalized price
 			totalP.append(map((lambda l: float(l/tChart[0]) - 1.00),tChart))
 			#append
-			t.append({'name':ticker,'performance':performanceStr(performance),'price':tChart[-1]})
+			t.append({'name':ticker.upper(),'performance':performanceStr(performance),'price':tChart[-1]})
 		#sort tickers by performance
 		t.sort(key=lambda k: float(k['performance']),reverse=True)
 		#for each player total performance
@@ -98,7 +98,7 @@ def getPlayer(playername):
 		tPerformance += performance
 		performance = round((performance -1.00)* 100, 2) 
 		#append
-		t.append({'ticker':ticker['name'],'performance':performanceStr(performance),'chart':tChart, 'price': marketprice, 'startprice': bookprice})
+		t.append({'ticker':ticker['name'].upper(),'performance':performanceStr(performance),'chart':tChart, 'price': marketprice, 'startprice': bookprice})
 	#sort tickers by performance
 	t.sort(key=lambda k: float(k['performance']),reverse=True)
 	#player total performance
@@ -121,7 +121,7 @@ def getTicker(tickername):
 	# else:
 	# 	#scrape and return
 	chart = indicescrape.getTickerHistory(tickername)
-	ticker = {'ticker':tickername, 'chart': chart, 'price': chart[-1],'52low':min(chart), '52high':max(chart)}
+	ticker = {'ticker':tickername.upper(), 'chart': chart, 'price': chart[-1],'52low':min(chart), '52high':max(chart)}
 	return ticker
 
 
