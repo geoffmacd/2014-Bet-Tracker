@@ -19,18 +19,35 @@ betDirectives.directive('stockChart', function ($parse) {
          scope: {data: '=chartData'},
          link: function (scope, element, attrs) {
 
+
+            var isPrice = (attrs['type'] == 'price') ? true : false;
+
+            console.log(attrs['type']);
             console.log(scope.data);
 
             nv.addGraph(function() {  
               var chart = nv.models.lineChart();
 
-              chart.xAxis
-              .axisLabel('Date')
-              .tickFormat(d3.format(',r'));
 
-              chart.yAxis
-              .axisLabel('Performance (%)')
-              .tickFormat(d3.format('.0f'));
+              if(isPrice){
+
+                chart.xAxis
+                .axisLabel('Date')
+                .tickFormat(d3.format(',r'));
+                
+                chart.yAxis
+                .axisLabel('Price ($)')
+                .tickFormat(d3.format('.2f'));
+              } else {
+
+                chart.xAxis
+                .axisLabel('Date')
+                .tickFormat(d3.format(',r'));
+
+                chart.yAxis
+                .axisLabel('Performance (%)')
+                .tickFormat(d3.format('.2f'));
+              }
 
               d3.select('#chart svg')
               .datum(scope.data)
@@ -89,4 +106,14 @@ directive('activeLink', ['$location', function(location) {
         }
 
     };
-}]);
+}]).
+directive('autoFocus', function($timeout) {
+  return {
+      restrict: 'AC',
+      link: function(_scope, _element) {
+          $timeout(function(){
+              _element[0].focus();
+          }, 0);
+      }
+  }
+});

@@ -36,8 +36,6 @@ def performanceStr(fl):
 		result = str(fl)
 	return result
 
-
-
 #gets all players with all their tickers and total portfolio chart
 def getAllPlayers():
 	collection = client.players.players
@@ -56,20 +54,20 @@ def getAllPlayers():
 			tPerformance += performance
 			performance = round((performance -1.00)* 100, 2) 
 			#append normalized price
-			totalP.append(map((lambda l: float(l/tChart[0])),tChart))
+			totalP.append(map((lambda l: float(l/tChart[0]) - 1.00),tChart))
 			#append
 			t.append({'name':ticker,'performance':performanceStr(performance),'price':tChart[-1]})
 		#sort tickers by performance
 		t.sort(key=lambda k: float(k['performance']),reverse=True)
 		#for each player total performance
 		p['tickers'] = t
-		p['performance'] = performanceStr(round(tPerformance / len(player['tickers']),2))
+		p['performance'] = performanceStr(round(((tPerformance / len(player['tickers']))-1.00) * 100,2))
 		#total daily performance, normalized to day 1
 		#of size of the numbr of days
 		total = [0]*len(totalP[0])
 		for ticker in totalP:
 			for i in range(len(totalP[0])):
-				total[i] += ticker[i]
+				total[i] += ticker[i] / len(totalP)
 		p['chart'] = total
 		a.append(p)
 	#sort players by performance
@@ -91,32 +89,40 @@ def getPlayer(playername):
 	for ticker in player['tickers']:
 		#find prices for tickers from db
 		tChart = indicescrape.getTickerHistory(ticker['name'])
-		#calculate performance of each stock and then total
+		bookprice = tChart[0]
+		marketprice = tChart[-1]
 		performance = tChart[-1] / tChart[0] 
+		tChart = map((lambda l: (float(l/tChart[0]) -1.00) *100),tChart)
+		#calculate performance of each stock and then total
 		tPerformance += performance
 		performance = round((performance -1.00)* 100, 2) 
 		#append
-		t.append({'ticker':ticker['name'],'performance':performanceStr(performance),'chart':tChart, 'price': tChart[-1], 'startprice': tChart[0]})
+		t.append({'ticker':ticker['name'],'performance':performanceStr(performance),'chart':tChart, 'price': marketprice, 'startprice': bookprice})
 	#sort tickers by performance
 	t.sort(key=lambda k: float(k['performance']),reverse=True)
 	#player total performance
 	player['performance'] = performanceStr(round((tPerformance / len(player['tickers']) -1)* 100, 2)) 
-	print player['performance']
 	#append ticker array with full charts
 	player['tickers'] = t
 	return player
 
 #gets more details on each player with all ticker charts
 def getTicker(tickername):
-	collection = client.stocks[tickername]
-	#return all prices
-	prices = [tickPrice for tickPrice in collection.find()]
-	#strip the dates out since we know this
-	chart = map((lambda l: round(float(l['price']),4)),prices)
-	print chart
-	if len(chart) > 0:
-		ticker = {'ticker':tickername, 'chart': chart, 'price': chart[-1],'52low':min(chart), '52high':max(chart)}
-		return ticker
+	# collection = client.stocks[tickername]
+	# #return all prices
+	# prices = [tickPrice for tickPrice in collection.find()]
+	# if len(prices) > 1:
+	# 	#strip the dates out since we know this
+	# 	chart = map((lambda l: round(float(l['price']),4)),prices)
+	# 	if len(chart) > 0:
+	# 		ticker = {'ticker':tickername, 'chart': chart, 'price': chart[-1],'52low':min(chart), '52high':max(chart)}
+	# 		return ticker
+	# else:
+	# 	#scrape and return
+	chart = indicescrape.getTickerHistory(tickername)
+	ticker = {'ticker':tickername, 'chart': chart, 'price': chart[-1],'52low':min(chart), '52high':max(chart)}
+	return ticker
+
 
 @app.route('/data/players')
 def apiplayers():

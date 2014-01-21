@@ -6,7 +6,7 @@
 		<!--Search query content-->
 		<p>Search from NYSE, NASDAQ, TSX by ticker only</p>
 
-		Ticker: <input ng-model="query" ng-change="getStock(query)" id="searchField">
+		Ticker: <input ng-model="query" ng-change="getStock(query)" id="searchField" auto-focus>
 		<p class="searchResultDescription" ng-show="!quote.price && query">Not found</p>
 	</div>
 
@@ -68,7 +68,7 @@
 
 	<div class="chartDiv">
 		<h3>2014 Chart</h3>
-		<stock-chart chart-data="myData"></stock-chart>
+		<stock-chart chart-data="myData" type="price"></stock-chart>
 		<div id='chart'>
 			<svg style='height:500px'> </svg>
 		</div>

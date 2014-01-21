@@ -140,8 +140,10 @@ bettyControllers.controller('QuoteCtrl', ['$scope', '$routeParams', 'Quote',
 		$scope.getStock = function(tickerId) {
 			//reset chart
 			$scope.myData = null;
-			//ticker Id should always be equal to $scope.query
-	      	$scope.quote = Quote.get({tickerId:tickerId}).$promise.then(showChart);
+			$scope.quote = null;
+			//ticker Id should always be equal to $scope.query, only try if it exists
+			if(tickerId.length)
+	      		$scope.quote = Quote.get({tickerId:tickerId}).$promise.then(showChart);
 	    }
 
 	    function showChart(result){

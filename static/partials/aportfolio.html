@@ -26,10 +26,10 @@
               <td ng-style="{color: ticker.color}">{{ticker.performance}}</td>
           </tr>
           <tr>
+              <td><u>Total</u></td>
               <td></td>
               <td></td>
-              <td></td>
-              <td ng-style="{color: player.color}"{{player.performance}}</td>
+              <td ng-style="{color: player.color}">{{player.performance}}</td>
           </tr>
       </tbody>
     </table>
@@ -48,7 +48,7 @@
   <!-- graph of all portfolio stocks -->
   <div class="chartDiv">
       <h3>2014 Chart</h3>
-      <stock-chart chart-data="myData"></stock-chart>
+      <stock-chart chart-data="myData" type="performance"></stock-chart>
       <div id='chart'>
           <svg style='height:500px'> </svg>
       </div>
