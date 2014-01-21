@@ -13,23 +13,23 @@ config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/standings', {
-        templateUrl: 'partials/standings.html',
+        templateUrl: 'static/partials/standings.html',
         controller: 'StandingsCtrl'
       }).
       when('/portfolio/:playerId', {
-        templateUrl: 'partials/aportfolio.html',
+        templateUrl: 'static/partials/aportfolio.html',
         controller: 'PortfolioCtrl'
       }).
       when('/portfolio', {
-        templateUrl: 'partials/portfolio.html',
+        templateUrl: 'static/partials/portfolio.html',
         controller: 'NoPortfolioCtrl'
       }).
       when('/quote/:tickerId', {
-        templateUrl: 'partials/quote.html',
+        templateUrl: 'static/partials/quote.html',
         controller: 'QuoteCtrl'
       }).
       when('/quote', {
-        templateUrl: 'partials/quote.html',
+        templateUrl: 'static/partials/quote.html',
         controller: 'QuoteCtrl'
       }).
       otherwise({

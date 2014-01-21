@@ -9,11 +9,11 @@ var betService = angular.module('bettyServices', ['ngResource']);
 
 betService.factory('Quote', ['$resource',
   function($resource){
-    return $resource('data/quote:tickerId.json', {}, {});
+    return $resource('data/quotes/:tickerId', {}, {});
   }]);
 
 betService.factory('Player', ['$resource',
   function($resource){
-    return $resource('data/player:playerId.json', {}, {});
+    return $resource('data/players/:playerId', {}, {});
   }]);
 
