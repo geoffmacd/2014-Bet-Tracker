@@ -25,12 +25,14 @@ bettyControllers.controller('StandingsCtrl', ['$scope', 'Player',
 
 				//color scale
 				var colorScale = d3.scale.linear()
-				    .domain([-50,50])
+				    .domain([-30,30])
 				    .range(["red", "green"]);
 
 				for (var i = 0; i < result.length; i++) {
 					d.push(result[i].chart);
 					n.push(result[i].name);
+
+					$scope.players[i]['color'] = colorScale(result[i].performance);
 
 					for(var k = 0; k < result[i].tickers.length; k++){
 						result[i].tickers[k].color = colorScale(result[i].tickers[k].performance);
@@ -104,7 +106,7 @@ bettyControllers.controller('PortfolioCtrl',  ['$scope', '$routeParams',  'Playe
 
 				for (var i = 0; i < result.tickers.length; i++) {
 					d.push(result.tickers[i].chart);
-					n.push(result.tickers[i].ticker);
+					n.push(result.tickers[i].ticker.toUpperCase());
 					//colorize tickers
 
 					result.tickers[i].color = colorScale(result.tickers[i].performance);
@@ -151,7 +153,7 @@ bettyControllers.controller('QuoteCtrl', ['$scope', '$routeParams', 'Quote',
 
 				if(result){
 					console.log(result);
-					$scope.myData = seriesArray([result.chart],[result.ticker]);
+					$scope.myData = seriesArray([result.chart],[result.ticker.toUpperCase()]);
 				} 
 			}
 
