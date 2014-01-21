@@ -146,5 +146,5 @@ def index():
 	return render_template('index.html')
 
 if __name__ == '__main__':
-	setupdb.run()
+	# setupdb.run()
    	app.run(debug=False,port=80)
