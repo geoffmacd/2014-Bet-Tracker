@@ -6,7 +6,7 @@ import setupdb
 import indicescrape
 
 app = Flask(__name__)
-# app.config['SERVER_NAME'] = "alexvsgeoff.com"
+app.config['SERVER_NAME'] = "alexvsgeoff.com"
 
 client = MongoClient('localhost',27017)
 
@@ -146,5 +146,5 @@ def index():
 	return render_template('index.html')
 
 if __name__ == '__main__':
-	# setupdb.run()
-   	app.run(debug=True,port=8000)
+	setupdb.run()
+   	app.run(debug=False,port=80)
