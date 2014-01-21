@@ -29,6 +29,15 @@ def badResponse(code=400):
     response.headers['Content-Type'] = "application/json"
     return response
 
+def performanceStr(fl):
+	if fl > 0:
+		result = '+' + str(fl)
+	else:
+		result = str(fl)
+	return result
+
+
+
 #gets all players with all their tickers and total portfolio chart
 def getAllPlayers():
 	collection = client.players.players
@@ -45,13 +54,16 @@ def getAllPlayers():
 			#calculate performance of each stock and then total
 			performance = tChart[-1] / tChart[0]
 			tPerformance += performance
+			performance = round((performance -1.00)* 100, 2) 
 			#append normalized price
 			totalP.append(map((lambda l: float(l/tChart[0])),tChart))
 			#append
-			t.append({'name':ticker,'performance':performance,'price':tChart[-1]})
+			t.append({'name':ticker,'performance':performanceStr(performance),'price':tChart[-1]})
+		#sort tickers by performance
+		t.sort(key=lambda k: float(k['performance']),reverse=True)
 		#for each player total performance
 		p['tickers'] = t
-		p['performance'] = tPerformance / len(player['tickers'])
+		p['performance'] = performanceStr(round(tPerformance / len(player['tickers']),2))
 		#total daily performance, normalized to day 1
 		#of size of the numbr of days
 		total = [0]*len(totalP[0])
@@ -60,8 +72,8 @@ def getAllPlayers():
 				total[i] += ticker[i]
 		p['chart'] = total
 		a.append(p)
-	#sort by performance
-	# a.sort(key=lambda k: k['performance'])
+	#sort players by performance
+	a.sort(key=lambda k: float(k['performance']),reverse=True)
 	return a
 
 #gets more details on each player with all ticker charts
@@ -80,12 +92,16 @@ def getPlayer(playername):
 		#find prices for tickers from db
 		tChart = indicescrape.getTickerHistory(ticker['name'])
 		#calculate performance of each stock and then total
-		performance = tChart[-1] / tChart[0]
+		performance = tChart[-1] / tChart[0] 
 		tPerformance += performance
+		performance = round((performance -1.00)* 100, 2) 
 		#append
-		t.append({'ticker':ticker['name'],'performance':performance,'chart':tChart, 'price': tChart[-1], 'startprice': tChart[0]})
+		t.append({'ticker':ticker['name'],'performance':performanceStr(performance),'chart':tChart, 'price': tChart[-1], 'startprice': tChart[0]})
+	#sort tickers by performance
+	t.sort(key=lambda k: float(k['performance']),reverse=True)
 	#player total performance
-	player['performance'] = tPerformance / len(player['tickers'])
+	player['performance'] = performanceStr(round((tPerformance / len(player['tickers']) -1)* 100, 2)) 
+	print player['performance']
 	#append ticker array with full charts
 	player['tickers'] = t
 	return player
@@ -96,7 +112,7 @@ def getTicker(tickername):
 	#return all prices
 	prices = [tickPrice for tickPrice in collection.find()]
 	#strip the dates out since we know this
-	chart = map((lambda l: float(l['price'])),prices)
+	chart = map((lambda l: round(float(l['price']),4)),prices)
 	print chart
 	if len(chart) > 0:
 		ticker = {'ticker':tickername, 'chart': chart, 'price': chart[-1],'52low':min(chart), '52high':max(chart)}
