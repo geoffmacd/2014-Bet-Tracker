@@ -25,7 +25,7 @@ bettyControllers.controller('StandingsCtrl', ['$scope', 'Player',
 
 				//color scale
 				var colorScale = d3.scale.linear()
-				    .domain([-30,30])
+				    .domain([-20,20])
 				    .range(["red", "green"]);
 
 				for (var i = 0; i < result.length; i++) {
@@ -65,7 +65,7 @@ bettyControllers.controller('NoPortfolioCtrl', ['$scope', 'Player',
 
 				//color scale
 				var colorScale = d3.scale.linear()
-				    .domain([-50,50])
+				    .domain([-20,20])
 				    .range(["red", "green"]);
 
 				for (var i = 0; i < result.length; i++) {
@@ -97,7 +97,7 @@ bettyControllers.controller('PortfolioCtrl',  ['$scope', '$routeParams',  'Playe
 
 				//color scale
 				var colorScale = d3.scale.linear()
-				    .domain([-50,50])
+				    .domain([-20,20])
 				    .range(["red", "green"]);
 
 				//get chart and names
@@ -144,8 +144,6 @@ bettyControllers.controller('QuoteCtrl', ['$scope', '$routeParams', '$q','Quote'
 			//cancel any previous requests
 			if($scope.quote)
 				$q.when($scope.quote)
-			// if($scope.quote)
-			// 	$q.when($scope.quote)
 
 			//reset chart
 			$scope.myData = null;
