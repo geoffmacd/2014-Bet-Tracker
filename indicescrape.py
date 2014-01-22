@@ -24,6 +24,8 @@ def getTickerHistory(ticker):
 
 #uses db
 def getTickerHistoryFromDb(ticker):
+	#convert ticker to candian if necessary
+	ticker = ticker.replace('.TO','-TO')
 	collection = client.stocks[ticker]
 	#return all prices
 	prices = [tickPrice for tickPrice in collection.find()]
@@ -34,14 +36,14 @@ def getTickerHistoryFromDb(ticker):
 #uses pyq
 def getTickerHistoryFromWeb(ticker):
 	try:
-		data = pyq.get_yahoo_ticker_historical('20140114', time.strftime("%Y%m%d"),ticker)
+		data = pyq.get_yahoo_ticker_historical('20140116', time.strftime("%Y%m%d"),ticker)
 	except:
 		print 'could not find on web' + ticker
 		return None
 	#reverse list so that end is latest
 	data.reverse() 
 	#save only date and price
-	chart = map((lambda l: {'date':l[1],'price':l[7]}),data)
+	chart = map((lambda l: {'date':l[1],'price':l[5]}),data)
 	return chart
 
 def formatTickers(prices):
@@ -57,6 +59,7 @@ def saveTickerHistory(ticker):
 
 def dbSaveTickerHistory(data,ticker):
 	#drop and refresh
+	ticker = ticker.replace('.TO','-TO')
 	db = client.stocks
 	collection = db[ticker]
 	db.drop_collection(collection)
