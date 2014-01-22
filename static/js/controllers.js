@@ -32,12 +32,15 @@ bettyControllers.controller('StandingsCtrl', ['$scope', 'Player',
 					d.push(result[i].chart);
 					n.push(result[i].name);
 
-					$scope.players[i]['color'] = colorScale(result[i].performance);
+					//if player is negative, make background red,
+					$scope.players[i]['color'] = (result[i].performance < 0 ? 'red' : '#519251');
 
 					for(var k = 0; k < result[i].tickers.length; k++){
 						result[i].tickers[k].color = colorScale(result[i].tickers[k].performance);
 					}
 				};
+
+
 
 				//show chart
 				$scope.myData = seriesArray(d,n);
@@ -69,6 +72,10 @@ bettyControllers.controller('NoPortfolioCtrl', ['$scope', 'Player',
 				    .range(["red", "green"]);
 
 				for (var i = 0; i < result.length; i++) {
+
+					//if player is negative, make background red,
+					$scope.players[i]['color'] = (result[i].performance < 0 ? 'red' : '#519251');
+					
 					//colorize tickers
 					for(var k = 0; k < result[i].tickers.length; k++){
 						result[i].tickers[k].color = colorScale(result[i].tickers[k].performance);
