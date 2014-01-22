@@ -131,7 +131,7 @@ directive('autoFocus', function($timeout) {
 function formatChartData(data){
 
   //weekdays at 2014 jan 01
-  var firstDays = weekday(new Date(2014, 0, 1, 0, 0, 0, 0));
+  var firstDays = weekday(new Date(2014, 0, 16, 0, 0, 0, 0));
   console.log(firstDays);
 
   //for each date as weekday of year, convert to date
