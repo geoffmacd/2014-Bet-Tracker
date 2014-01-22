@@ -34,7 +34,7 @@ def getTickerHistoryFromDb(ticker):
 #uses pyq
 def getTickerHistoryFromWeb(ticker):
 	try:
-		data = pyq.get_yahoo_ticker_historical('20140101', time.strftime("%Y%m%d"),ticker)
+		data = pyq.get_yahoo_ticker_historical('20140114', time.strftime("%Y%m%d"),ticker)
 	except:
 		print 'could not find on web' + ticker
 		return None

@@ -17,9 +17,9 @@ def scrapeStocks():
 
 def initPlayers():
 	dbc = client.players.players
-	dbc.insert({"name":"Geoff","tickers":['MFC','SU','POT','RCI','AMZN','CRM','LULU','TGT','JPM']})
-	dbc.insert({"name":"Alex","tickers":['ARE','GIL','PJC','BAC','BA','BBBY','PKG','GOOG']})
-	dbc.insert({"name":"Steve","tickers":['GPS','DOL','PCLN','SWI','PII','BWLD','TSLA']})
+	dbc.insert({"name":"Geoff","tickers":['MFC.TO','SU.TO','POT.TO','RCI-B.TO','COS-UN.TO','AMZN','CRM','LULU','TGT','JPM']})
+	dbc.insert({"name":"Alex","tickers":['ARE.TO','GIL.TO','PJC-A.TO','LNR.TO','BAD.TO','BAC','BA','BBBY','PKG','GOOG']})
+	dbc.insert({"name":"Steve","tickers":['GPS.V','DOL.TO','SVC.TO', 'IIP-UN.TO','ATD-B.TO','PCLN','SWI','PII','BWLD','TSLA']})
 	print "done 2"
 
 def dropAll():
