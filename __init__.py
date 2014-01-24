@@ -68,7 +68,7 @@ def getAllPlayers():
 		for ticker in totalP:
 			for i in range(len(totalP[0])):
 				if i < len(ticker):
-					total[i] += ticker[i] * 100 / len(totalP)
+					total[i] += (ticker[i] + 1.00) * 100 / len(totalP)
 		p['chart'] = total
 		a.append(p)
 	#sort players by performance
