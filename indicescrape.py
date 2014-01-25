@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import pyq
 import datetime,time
 from pymongo import MongoClient
