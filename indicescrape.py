@@ -7,6 +7,7 @@ client = MongoClient('localhost',27017)
 
 
 
+
 # Gets 2014 stock history with price values
 def getTickerHistory(ticker):
 	chart = getTickerHistoryFromDb(ticker)
@@ -17,7 +18,7 @@ def getTickerHistory(ticker):
 		if webFormat:
 			#save the stock for future reuse
 			dbSaveTickerHistory(webFormat,ticker)
-			chart = formatTickers(webFormat)
+			chart = formatTickers(webFormat,ticker)
 		else:
 			return None
 	return chart
@@ -30,7 +31,7 @@ def getTickerHistoryFromDb(ticker):
 	#return all prices
 	prices = [tickPrice for tickPrice in collection.find()]
 	#strip the dates out since we know this
-	chart = formatTickers(prices)
+	chart = formatTickers(prices,ticker)
 	return chart
 
 #uses pyq
@@ -46,7 +47,38 @@ def getTickerHistoryFromWeb(ticker):
 	chart = map((lambda l: {'date':l[1],'price':l[5]}),data)
 	return chart
 
-def formatTickers(prices):
+def usDefault():
+	ticker = 'GOOG'
+	collection = client.stocks[ticker]
+	#return all prices
+	stock = [tickPrice for tickPrice in collection.find()]
+	return stock
+
+def cadDefault():
+	ticker = 'DOL-TO'
+	collection = client.stocks[ticker]
+	#return all prices
+	stock = [tickPrice for tickPrice in collection.find()]
+	return stock
+
+def formatTickers(prices,ticker):
+	#decide to insert duplicate data for holidays
+	if ticker.find('TO') > 0:
+		oppStock = usDefault()
+	else:
+		oppStock = cadDefault()
+	dateMap = map((lambda l: l['date']), oppStock)
+	curDateMap = map((lambda l: l['date']), prices)
+	# print ticker
+	for (count,date) in enumerate(dateMap):
+		#if does not exist in us or cad stock insert 0
+		try:
+			curDateMap.index(date)
+		except Exception, e:
+			#insert duplicate price
+			toInsert = {'date': date, 'price' : prices[count-1]['price']}
+			# print 'inserting missing date' + date
+			prices.insert(count, toInsert)
 	#strip out dates
 	chart = map((lambda l: float(l['price'])),prices)
 	return chart

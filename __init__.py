@@ -54,23 +54,26 @@ def getAllPlayers():
 			tPerformance += performance
 			performance = round((performance -1.00)* 100, 2) 
 			#append normalized price
-			totalP.append(map((lambda l: float(l/tChart[0]) - 1.00),tChart))
+			tickerHist = map((lambda l: float(l/tChart[0]) - 1.00),tChart)
+			totalP.append(tickerHist)
 			#append
 			t.append({'name':ticker.upper(),'performance':performanceStr(performance),'price':tChart[-1]})
 		#sort tickers by performance
 		t.sort(key=lambda k: float(k['performance']),reverse=True)
-		#for each player total performance
+		#for each player total individual stock performance
 		p['tickers'] = t
+		#latest performance
 		p['performance'] = performanceStr(round(((tPerformance / len(player['tickers']))-1.00) * 100,2))
 		#total daily performance, normalized to day 1
-		#of size of the numbr of days
 		total = [0]*len(totalP[0])
 		for ticker in totalP:
+			#for each ticker in player portfolio
+			#enumerate all days for stocks
 			for i in range(len(totalP[0])):
+				#if ticker has an entry
 				if i < len(ticker):
-					total[i] += (ticker[i] + 1.00) * 100 / len(totalP)
-				else:
-					total[i] += 100.0 / len(totalP)
+					#add to normalized performance for the ith day
+					total[i] += (ticker[i] * 100)/ len(totalP)
 		p['chart'] = total
 		a.append(p)
 	#sort players by performance
@@ -117,8 +120,6 @@ def getTicker(tickername):
 		return ticker
 	else:
 		return None
-	
-
 
 @app.route('/data/players')
 def apiplayers():
@@ -150,4 +151,5 @@ def index():
 
 if __name__ == '__main__':
 	# setupdb.run()
+   	# app.run(debug=True,port=8000)
    	app.run(debug=False,port=80)
