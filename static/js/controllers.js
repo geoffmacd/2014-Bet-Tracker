@@ -162,8 +162,6 @@ bettyControllers.controller('QuoteCtrl', ['$scope', '$routeParams', '$q','Quote'
 	    }
 
 	    function showChart(result){
-				$scope.quote = result;
-
 				if(result){
 					console.log(result);
 					$scope.myData = seriesArray([result.chart],[result.ticker.toUpperCase()]);
