@@ -76,9 +76,10 @@ def formatTickers(prices,ticker):
 			curDateMap.index(date)
 		except Exception, e:
 			#insert duplicate price
-			toInsert = {'date': date, 'price' : prices[count-1]['price']}
-			# print 'inserting missing date' + date
-			prices.insert(count, toInsert)
+			if count > 0 and count <= len(prices):
+				toInsert = {'date': date, 'price' : prices[count-1]['price']}
+				# print 'inserting missing date' + date
+				prices.insert(count, toInsert)
 	#strip out dates
 	chart = map((lambda l: float(l['price'])),prices)
 	return chart
