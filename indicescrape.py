@@ -98,6 +98,9 @@ def dbSaveTickerHistory(data,ticker):
 	db = client.stocks
 	collection = db[ticker]
 	db.drop_collection(collection)
-	for price in data:
-                collection.insert(price)
+	for idx,price in enumerate(data):
+				if(ticker == 'BAD.TO' and idx > 5):
+                	collection.insert(price/3)
+                else:
+                	collection.insert(price)
 
